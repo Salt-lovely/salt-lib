@@ -4,6 +4,7 @@ build/
 log/
 script/
 www/
+src/
 
 .vscode/*
 !.vscode/settings.json
@@ -18,3 +19,8 @@ lerna-debug.log*
 
 package-lock.json
 yarn.lock
+
+.editorconfig
+.prettierignore
+.prettierrc
+.gitignore
