@@ -1,9 +1,8 @@
 {
   "name": "salt-lib",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Salt-lovely's lite lib",
   "main": "lib/index.js",
-  "module": "lib/index.js",
   "files": [
     "lib"
   ],
@@ -21,7 +20,8 @@
   },
   "scripts": {
     "serve": "node script/serve.js",
-    "build": "node script/bundle.js"
+    "build": "tsc",
+    "buildAndPublish": "tsc && npm publish"
   },
   "keywords": [
     "lib",
