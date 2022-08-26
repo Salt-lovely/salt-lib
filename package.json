@@ -1,0 +1,39 @@
+{
+  "name": "salt-lib",
+  "version": "0.0.1-alpha-1",
+  "description": "Salt-lovely's lite lib",
+  "main": "lib/index.js",
+  "files": [
+    "lib"
+  ],
+  "module": "lib/index.js",
+  "devDependencies": {
+    "@types/node": "^18.0.6",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^17.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "esbuild": "^0.14.25",
+    "esbuild-sass-plugin": "^2.2.4",
+    "eslint": "^8.10.0",
+    "open": "^8.4.0",
+    "postcss": "^8.4.8",
+    "postcss-modules": "^4.3.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "serve-http": "^1.0.7",
+    "sirv": "^2.0.2",
+    "typescript": "^4.6.2",
+    "yarn": "^1.22.17"
+  },
+  "scripts": {
+    "serve": "node script/serve.js",
+    "build": "node script/bundle.js"
+  },
+  "keywords": [
+    "lib",
+    "front-end"
+  ],
+  "author": "salt-lovely",
+  "license": "MulanPSL-2.0"
+}
