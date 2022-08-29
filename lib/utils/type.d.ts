@@ -9,3 +9,12 @@ export declare function isNil(u: unknown): u is null | undefined;
 export declare function isFunction(u: unknown): u is Function;
 /** 断言参数是`object`但不是`null` */
 export declare function isObject(u: unknown): u is object;
+/** 断言参数是一个整数 */
+export declare const isInteger: (u: unknown) => u is number;
+/** 断言参数是一个合规的`obj.length` */
+export declare function isValidLength(len: unknown): len is number;
+export declare const isArray: (arg: any) => arg is any[];
+/** 断言参数是一个类数组 */
+export declare function isArrayLike(u: unknown): u is ArrayLike<any>;
+/** 断言参数是一个类数组**对象** */
+export declare function isArrayLikeObject(u: unknown): u is ArrayLike<any> & object;

@@ -1,6 +1,6 @@
 {
   "name": "salt-lib",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Salt-lovely's lite lib",
   "main": "lib/index.js",
   "files": [
@@ -29,5 +29,9 @@
     "front-end"
   ],
   "author": "salt-lovely",
-  "license": "MulanPSL-2.0"
+  "license": "MulanPSL-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Salt-lovely/salt-lib.git"
+  }
 }
