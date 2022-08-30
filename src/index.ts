@@ -2,12 +2,19 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-29 23:29:31
+ * @LastEditTime: 2022-08-30 21:58:12
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
-export { sleep, waitTill } from './utils/async'
+export { sleep, waitTill, defer } from './utils/async'
 export { $debug, $error, $info, $log, $warn } from './utils/console'
+export {
+  isSafePropName,
+  isUnsafePropName,
+  filterUnsafeProp,
+  forSafePropsInObject,
+  extend,
+} from './utils/object'
 export {
   addScript,
   addStyle,
@@ -33,3 +40,5 @@ export {
   isInteger,
   isValidLength,
 } from './utils/type'
+
+export { polyfillIO } from './polyfill/index'
