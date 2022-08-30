@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-29 23:00:56
+ * @LastEditTime: 2022-08-30 23:05:55
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -27,6 +27,7 @@ export function isUndefined(u: unknown): u is undefined {
 export function isNull(u: unknown): u is null {
   return u === null
 }
+/** 断言参数是一个空值(`null`和`undefined`) */
 export function isNil(u: unknown): u is null | undefined {
   return u === null || u === undefined
 }

@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-29 22:05:13
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 22:33:23
+ * @LastEditTime: 2022-08-30 23:04:57
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\utils\async.ts
  */
@@ -50,7 +50,10 @@ export function docReady(fn: () => unknown) {
     fn()
   }
 }
-/** 等待文档准备完毕 */
+/** 等待文档准备完毕
+ * @param time 轮询时间间隔，单位毫秒(ms)，默认240毫秒
+ * @param timeout 超时时间，超出这个时间后会抛出错误，单位毫秒(ms)，默认为12,0000毫秒
+ */
 export function waitDocReady(time = 240, timeout = 12e4) {
   return waitTill(() => document.readyState !== 'loading', time, timeout)
 }
