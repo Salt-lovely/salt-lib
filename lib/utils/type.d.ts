@@ -5,6 +5,7 @@ export declare function isSymbol(u: unknown): u is symbol;
 export declare function isBigint(u: unknown): u is bigint;
 export declare function isUndefined(u: unknown): u is undefined;
 export declare function isNull(u: unknown): u is null;
+/** 断言参数是一个空值(`null`和`undefined`) */
 export declare function isNil(u: unknown): u is null | undefined;
 export declare function isFunction(u: unknown): u is Function;
 /** 断言参数是`object`但不是`null` */
