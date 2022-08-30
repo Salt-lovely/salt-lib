@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-29 22:05:13
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-29 23:24:08
+ * @LastEditTime: 2022-08-30 21:51:24
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\utils\async.ts
  */
@@ -24,4 +24,17 @@ export async function waitTill(fn: () => unknown, time = 120, timeout = 6e4) {
     if (Date.now() - startTime > timeout) throw new Error('waitTill: timeout')
     await sleep(time)
   }
+}
+type Defer<T> = {
+  promise: Promise<T>
+  resolve: (value: T | PromiseLike<T>) => void
+  reject: (reason?: any) => void
+}
+export function defer<T>() {
+  const dfr = {} as Defer<T>
+  dfr.promise = new Promise<T>((res, rej) => {
+    dfr.resolve = res
+    dfr.reject = rej
+  })
+  return dfr
 }
