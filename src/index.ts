@@ -2,11 +2,11 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 22:27:05
+ * @LastEditTime: 2022-08-30 22:34:02
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
-export { sleep, waitTill, defer } from './utils/async'
+export { sleep, waitTill, defer, docReady, waitDocReady } from './utils/async'
 export { $debug, $error, $info, $log, $warn } from './utils/console'
 export {
   isSafePropName,

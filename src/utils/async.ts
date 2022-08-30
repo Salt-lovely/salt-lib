@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-29 22:05:13
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 21:51:24
+ * @LastEditTime: 2022-08-30 22:33:23
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\utils\async.ts
  */
@@ -30,6 +30,10 @@ type Defer<T> = {
   resolve: (value: T | PromiseLike<T>) => void
   reject: (reason?: any) => void
 }
+/**
+ * 将回调逻辑改写为异步逻辑的方法
+ * @returns 一个`Defer`对象，其上有三个属性，`promise`、`resolve`和`reject`
+ */
 export function defer<T>() {
   const dfr = {} as Defer<T>
   dfr.promise = new Promise<T>((res, rej) => {
@@ -37,4 +41,16 @@ export function defer<T>() {
     dfr.reject = rej
   })
   return dfr
+}
+/** 文档准备完毕后执行回调，相当于jQuery的`$(()=>{})` */
+export function docReady(fn: () => unknown) {
+  if (document.readyState === 'loading') {
+    window.addEventListener('DOMContentLoaded', fn)
+  } else {
+    fn()
+  }
+}
+/** 等待文档准备完毕 */
+export function waitDocReady(time = 240, timeout = 12e4) {
+  return waitTill(() => document.readyState !== 'loading', time, timeout)
 }
