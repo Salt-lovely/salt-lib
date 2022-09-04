@@ -2,12 +2,12 @@
  * @Author: Salt
  * @Date: 2022-08-30 22:35:17
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 22:57:14
+ * @LastEditTime: 2022-09-03 00:39:25
  * @Description: DOM操作相关
  * @FilePath: \salt-lib\src\utils\dom.ts
  */
 /**
- * 封装querySelector
+ * 封装`querySelector`
  * @param selectors 选择器
  * @param parentElement 可选，父元素
  */
@@ -35,7 +35,7 @@ export function $(selectors: string, parentElement?: Element) {
   return document.querySelector(selectors)
 }
 /**
- * 封装querySelectorAll
+ * 封装`querySelectorAll`
  * @param selectors 选择器
  * @param parentElement 可选，父元素
  */

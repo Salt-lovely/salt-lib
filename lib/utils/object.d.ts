@@ -20,3 +20,19 @@ export declare function extend<O extends object, N extends object>(obj: O, prop:
     configurable?: boolean;
     writable?: boolean;
 }): O & N;
+/**
+ * 深度克隆（全复制）一个简单对象`{}`或数组`[]`，**无法**正确处理`String`、`Number`、`Date`、`Set`之类的特殊对象
+ *
+ * 如果要处理这些特殊的对象，请尝试`deepClonePlus`
+ *
+ * @param obj 需要全复制的对象，可以是简单对象或数组
+ */
+export declare function deepClone<T>(obj: T): T;
+/**
+ * 深度克隆（全复制）一个对象`{}`或数组`[]`，可以处理`String`、`Number`、`Date`、`Set`之类的特殊对象
+ *
+ * 但是性能不如`deepClone`
+ *
+ * @param obj 需要全复制的对象，可以是简单对象或数组
+ */
+export declare function deepClonePlus<T>(obj: T): T;

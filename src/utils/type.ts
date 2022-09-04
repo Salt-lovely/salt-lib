@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 23:05:55
+ * @LastEditTime: 2022-09-04 21:11:13
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -60,4 +60,24 @@ export function isArrayLike(u: unknown): u is ArrayLike<any> {
 /** 断言参数是一个类数组**对象** */
 export function isArrayLikeObject(u: unknown): u is ArrayLike<any> & object {
   return isObject(u) && isValidLength((u as any).length)
+}
+// 断言原生类型的特定对象
+export function isStringObject(u: unknown): u is String {
+  return u instanceof String
+}
+export function isNumberObject(u: unknown): u is Number {
+  return u instanceof Number
+}
+export function isBooleanObject(u: unknown): u is Boolean {
+  return u instanceof Boolean
+}
+// 断言原生对象
+export function isDate(u: unknown): u is Date {
+  return u instanceof Date
+}
+export function isSet(u: unknown): u is Set<any> {
+  return u instanceof Set
+}
+export function isMap(u: unknown): u is Map<any, any> {
+  return u instanceof Map
 }

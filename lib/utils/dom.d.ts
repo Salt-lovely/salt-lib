@@ -1,5 +1,5 @@
 /**
- * 封装querySelector
+ * 封装`querySelector`
  * @param selectors 选择器
  * @param parentElement 可选，父元素
  */
@@ -10,7 +10,7 @@ export declare function $<K extends keyof HTMLElementTagNameMap>(selectors: K, p
 export declare function $<K extends keyof SVGElementTagNameMap>(selectors: K, parentElement: Element): SVGElementTagNameMap[K] | null;
 export declare function $<E extends Element = Element>(selectors: string, parentElement: Element): E | null;
 /**
- * 封装querySelectorAll
+ * 封装`querySelectorAll`
  * @param selectors 选择器
  * @param parentElement 可选，父元素
  */

@@ -1,8 +1,19 @@
+import {
+  isArray,
+  isBooleanObject,
+  isDate,
+  isMap,
+  isNumberObject,
+  isObject,
+  isSet,
+  isStringObject,
+} from './type'
+
 /*
  * @Author: Salt
  * @Date: 2022-08-30 12:55:25
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 21:55:44
+ * @LastEditTime: 2022-09-04 20:52:13
  * @Description: 对象操作相关
  * @FilePath: \salt-lib\src\utils\object.ts
  */
@@ -78,21 +89,108 @@ export function extend<O extends object, N extends object>(
   obj: O,
   prop: N,
   options?: {
-    enumerable?: boolean;
-    configurable?: boolean;
-    writable?: boolean;
+    enumerable?: boolean
+    configurable?: boolean
+    writable?: boolean
   }
 ): O & N {
-  const enumerable = options?.enumerable ?? false;
-  const configurable = options?.enumerable ?? true;
-  const writable = options?.writable ?? true;
+  const enumerable = options?.enumerable ?? false
+  const configurable = options?.enumerable ?? true
+  const writable = options?.writable ?? true
   forSafePropsInObject(prop, (key, value) => {
     Object.defineProperty(obj, key, {
       enumerable,
       configurable,
       writable,
       value,
-    });
-  });
-  return obj as O & N;
+    })
+  })
+  return obj as O & N
+}
+/**
+ * 深度克隆（全复制）一个简单对象`{}`或数组`[]`，**无法**正确处理`String`、`Number`、`Date`、`Set`之类的特殊对象
+ *
+ * 如果要处理这些特殊的对象，请尝试`deepClonePlus`
+ *
+ * @param obj 需要全复制的对象，可以是简单对象或数组
+ */
+export function deepClone<T>(obj: T): T {
+  const map = new Map()
+  const res = _deepClone(obj, map)
+  map.clear() // 严防内存泄漏
+  return res
+}
+function _deepClone<T>(obj: T, map: Map<any, any>): T {
+  if (isObject(obj)) {
+    // 循环调用
+    if (map.has(obj)) return map.get(obj)
+    // 新的对象
+    let res: T
+    if (isArray(obj)) {
+      // @ts-ignore
+      res = obj.map((el) => _deepClone(el, map))
+    } else {
+      res = {} as T
+      for (const key in obj) {
+        res[key] = _deepClone(obj[key], map)
+      }
+      const symbols = Object.getOwnPropertySymbols(obj)
+      // @ts-ignore
+      symbols.forEach((symbol) => (res[symbol] = _deepClone(obj[symbol], map)))
+    }
+    map.set(obj, res)
+    return res
+  } else return obj
+}
+/**
+ * 深度克隆（全复制）一个对象`{}`或数组`[]`，可以处理`String`、`Number`、`Date`、`Set`之类的特殊对象
+ *
+ * 但是性能不如`deepClone`
+ *
+ * @param obj 需要全复制的对象，可以是简单对象或数组
+ */
+export function deepClonePlus<T>(obj: T): T {
+  const map = new Map()
+  const res = _deepClonePlus(obj, map)
+  map.clear() // 严防内存泄漏
+  return res
+}
+function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
+  if (isObject(obj)) {
+    if (isStringObject(obj)) return new String(obj.valueOf()) as unknown as T
+    if (isNumberObject(obj)) return new Number(obj.valueOf()) as unknown as T
+    if (isBooleanObject(obj)) return new Boolean(obj.valueOf()) as unknown as T
+    if (isDate(obj)) return new Date(obj.valueOf()) as unknown as T
+    if (isMap(obj)) {
+      const _map = new Map()
+      for (const item of obj)
+        _map.set(_deepClonePlus(item[0], map), _deepClonePlus(item[1], map))
+      return _map as unknown as T
+    }
+    if (isSet(obj)) {
+      const _set = new Set()
+      obj.forEach((item) => _set.add(_deepClonePlus(item, map)))
+      return _set as unknown as T
+    }
+    // 循环调用
+    if (map.has(obj)) return map.get(obj)
+    // 新的对象
+    let res: T
+    if (isArray(obj)) {
+      // @ts-ignore
+      res = obj.map((el) => _deepClonePlus(el, map))
+    } else {
+      res = {} as T
+      for (const key in obj) {
+        res[key] = _deepClonePlus(obj[key], map)
+      }
+      const symbols = Object.getOwnPropertySymbols(obj)
+      symbols.forEach(
+        // @ts-ignore
+        (symbol) => (res[symbol] = _deepClonePlus(obj[symbol], map))
+      )
+    }
+    map.set(obj, res)
+    return res
+  } else return obj
 }

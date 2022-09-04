@@ -19,3 +19,9 @@ export declare const isArray: (arg: any) => arg is any[];
 export declare function isArrayLike(u: unknown): u is ArrayLike<any>;
 /** 断言参数是一个类数组**对象** */
 export declare function isArrayLikeObject(u: unknown): u is ArrayLike<any> & object;
+export declare function isStringObject(u: unknown): u is String;
+export declare function isNumberObject(u: unknown): u is Number;
+export declare function isBooleanObject(u: unknown): u is Boolean;
+export declare function isDate(u: unknown): u is Date;
+export declare function isSet(u: unknown): u is Set<any>;
+export declare function isMap(u: unknown): u is Map<any, any>;

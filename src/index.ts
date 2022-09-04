@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-02 22:26:05
+ * @LastEditTime: 2022-09-04 21:11:57
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
@@ -16,6 +16,8 @@ export {
   filterUnsafeProp,
   forSafePropsInObject,
   extend,
+  deepClone,
+  deepClonePlus,
 } from './utils/object'
 export {
   randomChoice,
@@ -37,15 +39,21 @@ export {
 } from './utils/resource'
 export {
   isString,
+  isStringObject,
   isNumber,
+  isNumberObject,
   isBigint,
   isBoolean,
+  isBooleanObject,
   isNil,
   isNull,
   isSymbol,
   isUndefined,
   isFunction,
   isObject,
+  isDate,
+  isMap,
+  isSet,
   isArray,
   isArrayLike,
   isArrayLikeObject,
