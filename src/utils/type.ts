@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-08 20:31:40
+ * @LastEditTime: 2022-09-11 21:31:34
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -78,9 +78,19 @@ export function isSymbolObject(u: unknown): u is Boolean {
 export function isDate(u: unknown): u is Date {
   return u instanceof Date
 }
+/** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export function isSet(u: unknown): u is Set<any> {
   return u instanceof Set
 }
+/** 断言参数是一个`Map`，使用之前建议`polyfillES6` */
 export function isMap(u: unknown): u is Map<any, any> {
   return u instanceof Map
+}
+/** 断言参数是一个`WeakSet`，使用之前建议`polyfillES6` */
+export function isWeakSet(u: unknown): u is WeakSet<any> {
+  return u instanceof WeakSet
+}
+/** 断言参数是一个`WeakMap`，使用之前建议`polyfillES6` */
+export function isWeakMap(u: unknown): u is WeakMap<any, any> {
+  return u instanceof WeakMap
 }

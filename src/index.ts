@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-08 20:28:16
+ * @LastEditTime: 2022-09-11 21:33:04
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
@@ -56,6 +56,8 @@ export {
   isDate,
   isMap,
   isSet,
+  isWeakMap,
+  isWeakSet,
   isArray,
   isArrayLike,
   isArrayLikeObject,

@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-08 20:29:59
+ * @LastEditTime: 2022-09-11 21:34:10
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -25,6 +25,8 @@ import {
   isDate,
   isMap,
   isSet,
+  isWeakMap,
+  isWeakSet,
   isArray,
   isArrayLike,
   isArrayLikeObject,
@@ -162,4 +164,14 @@ it('类型测试 Type utils test - function Date Map Set', () => {
   expect(isSet(Set)).toBe(false)
   expect(isSet([])).toBe(false)
   expect(isSet(new Map())).toBe(false)
+  // WeakMap
+  expect(isWeakMap(new WeakMap())).toBe(true)
+  expect(isWeakMap(new Map())).toBe(false)
+  expect(isWeakMap(WeakMap)).toBe(false)
+  expect(isWeakMap(new Set())).toBe(false)
+  // WeakSet
+  expect(isWeakSet(new WeakSet())).toBe(true)
+  expect(isWeakSet(new Set())).toBe(false)
+  expect(isWeakSet(WeakSet)).toBe(false)
+  expect(isWeakSet(new Map())).toBe(false)
 })
