@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-05 00:12:30
+ * @LastEditTime: 2022-09-08 20:29:59
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -12,11 +12,13 @@ import {
   isNumber,
   isNumberObject,
   isBigint,
+  // isBigintObject,
   isBoolean,
   isBooleanObject,
   isNil,
   isNull,
   isSymbol,
+  isSymbolObject,
   isUndefined,
   isFunction,
   isObject,
@@ -72,11 +74,21 @@ it('类型测试 Type utils test - bigint symbol null undefined', () => {
   // expect(isBigint(BigInt(123))).toBe(true)
   expect(isBigint(12345)).toBe(false)
   expect(isBigint(false)).toBe(false)
+
+  // expect(isBigintObject(Object(1n))).toBe(true)
+  // expect(isBigintObject(BigInt(123))).toBe(false)
+  // expect(isBigintObject(true)).toBe(false)
+  // expect(isBigintObject(1234)).toBe(false)
   // symbol
   expect(isSymbol(Symbol())).toBe(true)
   expect(isSymbol(Symbol('123'))).toBe(true)
   expect(isSymbol(Symbol('123').description)).toBe(false)
   expect(isSymbol('123')).toBe(false)
+
+  expect(isSymbolObject(Object(Symbol()))).toBe(true)
+  expect(isSymbolObject(Symbol())).toBe(false)
+  expect(isSymbolObject(true)).toBe(false)
+  expect(isSymbolObject(1234)).toBe(false)
   // null
   expect(isNull(null)).toBe(true)
   expect(isNull(undefined)).toBe(false)

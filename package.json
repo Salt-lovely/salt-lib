@@ -12,6 +12,7 @@
     "esbuild": "^0.14.25",
     "esbuild-sass-plugin": "^2.2.4",
     "jest": "^29.0.2",
+    "jest-environment-jsdom": "^29.0.2",
     "open": "^8.4.0",
     "postcss": "^8.4.8",
     "postcss-modules": "^4.3.1",

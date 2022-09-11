@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-04 21:11:13
+ * @LastEditTime: 2022-09-08 20:31:40
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -48,11 +48,7 @@ export const isInteger =
 export function isValidLength(len: unknown): len is number {
   return isInteger(len) && len > -1 && len < Number.MAX_SAFE_INTEGER
 }
-export const isArray =
-  Array.isArray ||
-  function isArray(u: unknown): u is any[] {
-    return u instanceof Array
-  }
+export const isArray = Array.isArray
 /** 断言参数是一个类数组 */
 export function isArrayLike(u: unknown): u is ArrayLike<any> {
   return !isNil(u) && isValidLength((u as any).length)
@@ -70,6 +66,13 @@ export function isNumberObject(u: unknown): u is Number {
 }
 export function isBooleanObject(u: unknown): u is Boolean {
   return u instanceof Boolean
+}
+export function isBigintObject(u: unknown): u is Boolean {
+  // @ts-ignore
+  return u instanceof Bigint
+}
+export function isSymbolObject(u: unknown): u is Boolean {
+  return u instanceof Symbol
 }
 // 断言原生对象
 export function isDate(u: unknown): u is Date {
