@@ -22,6 +22,14 @@ export declare function isArrayLikeObject(u: unknown): u is ArrayLike<any> & obj
 export declare function isStringObject(u: unknown): u is String;
 export declare function isNumberObject(u: unknown): u is Number;
 export declare function isBooleanObject(u: unknown): u is Boolean;
+export declare function isBigintObject(u: unknown): u is Boolean;
+export declare function isSymbolObject(u: unknown): u is Boolean;
 export declare function isDate(u: unknown): u is Date;
+/** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export declare function isSet(u: unknown): u is Set<any>;
+/** 断言参数是一个`Map`，使用之前建议`polyfillES6` */
 export declare function isMap(u: unknown): u is Map<any, any>;
+/** 断言参数是一个`WeakSet`，使用之前建议`polyfillES6` */
+export declare function isWeakSet(u: unknown): u is WeakSet<any>;
+/** 断言参数是一个`WeakMap`，使用之前建议`polyfillES6` */
+export declare function isWeakMap(u: unknown): u is WeakMap<any, any>;
