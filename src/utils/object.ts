@@ -127,10 +127,13 @@ function _deepClone<T>(obj: T, map: Map<any, any>): T {
     // 新的对象
     let res: T
     if (isArray(obj)) {
+      res = [] as T
+      map.set(obj, res)
       // @ts-ignore
-      res = obj.map((el) => _deepClone(el, map))
+      obj.forEach((el) => res.push(_deepClone(el, map)))
     } else {
       res = {} as T
+      map.set(obj, res)
       for (const key in obj) {
         res[key] = _deepClone(obj[key], map)
       }
@@ -138,7 +141,6 @@ function _deepClone<T>(obj: T, map: Map<any, any>): T {
       // @ts-ignore
       symbols.forEach((symbol) => (res[symbol] = _deepClone(obj[symbol], map)))
     }
-    map.set(obj, res)
     return res
   } else return obj
 }
@@ -157,30 +159,35 @@ export function deepClonePlus<T>(obj: T): T {
 }
 function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
   if (isObject(obj)) {
+    // 循环调用
+    if (map.has(obj)) return map.get(obj)
     if (isStringObject(obj)) return new String(obj.valueOf()) as unknown as T
     if (isNumberObject(obj)) return new Number(obj.valueOf()) as unknown as T
     if (isBooleanObject(obj)) return new Boolean(obj.valueOf()) as unknown as T
     if (isDate(obj)) return new Date(obj.valueOf()) as unknown as T
     if (isMap(obj)) {
       const _map = new Map()
+      map.set(obj, _map)
       for (const item of obj)
         _map.set(_deepClonePlus(item[0], map), _deepClonePlus(item[1], map))
       return _map as unknown as T
     }
     if (isSet(obj)) {
       const _set = new Set()
+      map.set(obj, _set)
       obj.forEach((item) => _set.add(_deepClonePlus(item, map)))
       return _set as unknown as T
     }
-    // 循环调用
-    if (map.has(obj)) return map.get(obj)
     // 新的对象
     let res: T
     if (isArray(obj)) {
+      res = [] as T
+      map.set(obj, res)
       // @ts-ignore
-      res = obj.map((el) => _deepClonePlus(el, map))
+      obj.forEach((el) => res.push(_deepClone(el, map)))
     } else {
       res = {} as T
+      map.set(obj, res)
       for (const key in obj) {
         res[key] = _deepClonePlus(obj[key], map)
       }
@@ -190,7 +197,6 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
         (symbol) => (res[symbol] = _deepClonePlus(obj[symbol], map))
       )
     }
-    map.set(obj, res)
     return res
   } else return obj
 }
