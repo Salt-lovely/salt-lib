@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-08 20:32:37
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-08 20:59:08
+ * @LastEditTime: 2022-09-12 15:02:03
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\test\random.test.ts
  */
@@ -17,14 +17,13 @@ import {
   uuidV4,
 } from '../src/index'
 
-const loopTimes = 1e4
+const loopTimes = 5e3
 const arr10 = Array(10).fill(0)
 it('随机数测试 Random utils test - randomInt', () => {
   const arr = arr10.map(() => 0)
   for (let i = 0; i < loopTimes; i++) {
     const r = randomInt(0, 10)
-    expect(r).toBeGreaterThanOrEqual(0)
-    expect(r).toBeLessThan(10)
+    expect(r >= 0 && r < 10).toBe(true)
     arr[r] += 1
   }
   expect(arr[0] / loopTimes).toBeCloseTo(0.1, 1)
@@ -36,8 +35,7 @@ it('随机数测试 Random utils test - randomIntCeil', () => {
   const arr = arr10.map(() => 0)
   for (let i = 0; i < loopTimes; i++) {
     const r = randomIntCeil(-1, 9)
-    expect(r).toBeGreaterThan(-1)
-    expect(r).toBeLessThanOrEqual(9)
+    expect(r > -1 && r <= 9).toBe(true)
     arr[r] += 1
   }
   expect(arr[0] / loopTimes).toBeCloseTo(0.1, 1)
@@ -49,8 +47,7 @@ it('随机数测试 Random utils test - randomIntBoth', () => {
   const arr = arr10.map(() => 0)
   for (let i = 0; i < loopTimes; i++) {
     const r = randomIntBoth(0, 9)
-    expect(r).toBeGreaterThanOrEqual(0)
-    expect(r).toBeLessThanOrEqual(9)
+    expect(r >= 0 && r <= 9).toBe(true)
     arr[r] += 1
   }
   expect(arr[0] / loopTimes).toBeCloseTo(0.1, 1)
@@ -71,7 +68,8 @@ it('随机数测试 Random utils test - randomHex', () => {
 })
 it('随机数测试 Random utils test - randomChoice', () => {
   const arr = arr10.map(() => randomHex(8))
-  for (let i = 0; i < loopTimes; i++) {
+  const max = Math.ceil(loopTimes / 10) // 比较费资源所以少一些
+  for (let i = 0; i < max; i++) {
     expect(arr.includes(randomChoice(arr))).toBe(true)
   }
 })
