@@ -128,7 +128,7 @@ function _deepClone<T>(obj: T, map: Map<any, any>): T {
     // 新的对象
     let res: T
     if (isArray(obj)) {
-      res = [] as T
+      res = [] as unknown as T
       map.set(obj, res)
       // @ts-ignore
       obj.forEach((el) => res.push(_deepClone(el, map)))
@@ -180,7 +180,7 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
     // 新的对象
     let res: T
     if (isArray(obj)) {
-      res = [] as T
+      res = [] as unknown as T
       map.set(obj, res)
       // @ts-ignore
       obj.forEach((el) => res.push(_deepClone(el, map)))

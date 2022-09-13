@@ -2,7 +2,7 @@ export declare function isString(u: unknown): u is string;
 export declare function isNumber(u: unknown): u is number;
 export declare function isBoolean(u: unknown): u is boolean;
 export declare function isSymbol(u: unknown): u is symbol;
-export declare function isBigint(u: unknown): u is bigint;
+export declare function isBigInt(u: unknown): u is bigint;
 export declare function isUndefined(u: unknown): u is undefined;
 export declare function isNull(u: unknown): u is null;
 /** 断言参数是一个空值(`null`和`undefined`) */
@@ -22,8 +22,9 @@ export declare function isArrayLikeObject(u: unknown): u is ArrayLike<any> & obj
 export declare function isStringObject(u: unknown): u is String;
 export declare function isNumberObject(u: unknown): u is Number;
 export declare function isBooleanObject(u: unknown): u is Boolean;
-export declare function isBigintObject(u: unknown): u is Boolean;
-export declare function isSymbolObject(u: unknown): u is Boolean;
+export declare function isBigIntObject(u: unknown): u is BigInt;
+export declare function isSymbolObject(u: unknown): u is Symbol;
+export declare function isPrimitiveObject(u: unknown): u is String | Number | BigInt | Symbol | Boolean;
 export declare function isDate(u: unknown): u is Date;
 /** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export declare function isSet(u: unknown): u is Set<any>;
