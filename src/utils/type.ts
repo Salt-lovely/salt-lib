@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-11 21:31:34
+ * @LastEditTime: 2022-09-13 23:12:50
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -18,7 +18,7 @@ export function isBoolean(u: unknown): u is boolean {
 export function isSymbol(u: unknown): u is symbol {
   return typeof u === 'symbol'
 }
-export function isBigint(u: unknown): u is bigint {
+export function isBigInt(u: unknown): u is bigint {
   return typeof u === 'bigint'
 }
 export function isUndefined(u: unknown): u is undefined {
@@ -67,12 +67,23 @@ export function isNumberObject(u: unknown): u is Number {
 export function isBooleanObject(u: unknown): u is Boolean {
   return u instanceof Boolean
 }
-export function isBigintObject(u: unknown): u is Boolean {
-  // @ts-ignore
-  return u instanceof Bigint
+export function isBigIntObject(u: unknown): u is BigInt {
+  return !!BigInt && u instanceof BigInt
 }
-export function isSymbolObject(u: unknown): u is Boolean {
+export function isSymbolObject(u: unknown): u is Symbol {
   return u instanceof Symbol
+}
+export function isPrimitiveObject(
+  u: unknown
+): u is String | Number | BigInt | Symbol | Boolean {
+  return (
+    isObject(u) &&
+    (u instanceof String ||
+      u instanceof Number ||
+      u instanceof Boolean ||
+      u instanceof Symbol ||
+      (!!BigInt && u instanceof BigInt))
+  )
 }
 // 断言原生对象
 export function isDate(u: unknown): u is Date {

@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-11 21:34:10
+ * @LastEditTime: 2022-09-13 23:15:32
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -11,14 +11,15 @@ import {
   isStringObject,
   isNumber,
   isNumberObject,
-  isBigint,
-  // isBigintObject,
+  isBigInt,
+  // isBigIntObject,
   isBoolean,
   isBooleanObject,
-  isNil,
-  isNull,
   isSymbol,
   isSymbolObject,
+  isPrimitiveObject,
+  isNil,
+  isNull,
   isUndefined,
   isFunction,
   isObject,
@@ -72,15 +73,15 @@ it('类型测试 Type utils test - String Number Boolean', () => {
 })
 it('类型测试 Type utils test - bigint symbol null undefined', () => {
   // bigint
-  // expect(isBigint(12345n)).toBe(true)
-  // expect(isBigint(BigInt(123))).toBe(true)
-  expect(isBigint(12345)).toBe(false)
-  expect(isBigint(false)).toBe(false)
+  // expect(isBigInt(12345n)).toBe(true)
+  // expect(isBigInt(BigInt(123))).toBe(true)
+  expect(isBigInt(12345)).toBe(false)
+  expect(isBigInt(false)).toBe(false)
 
-  // expect(isBigintObject(Object(1n))).toBe(true)
-  // expect(isBigintObject(BigInt(123))).toBe(false)
-  // expect(isBigintObject(true)).toBe(false)
-  // expect(isBigintObject(1234)).toBe(false)
+  // expect(isBigIntObject(Object(1n))).toBe(true)
+  // expect(isBigIntObject(BigInt(123))).toBe(false)
+  // expect(isBigIntObject(true)).toBe(false)
+  // expect(isBigIntObject(1234)).toBe(false)
   // symbol
   expect(isSymbol(Symbol())).toBe(true)
   expect(isSymbol(Symbol('123'))).toBe(true)
@@ -91,6 +92,18 @@ it('类型测试 Type utils test - bigint symbol null undefined', () => {
   expect(isSymbolObject(Symbol())).toBe(false)
   expect(isSymbolObject(true)).toBe(false)
   expect(isSymbolObject(1234)).toBe(false)
+
+  expect(isPrimitiveObject(Object(1))).toBe(true)
+  expect(isPrimitiveObject(Object('1'))).toBe(true)
+  expect(isPrimitiveObject(Object(true))).toBe(true)
+  expect(isPrimitiveObject(Object(Symbol()))).toBe(true)
+  // expect(isPrimitiveObject(Object(1n))).toBe(true)
+  expect(isPrimitiveObject(1)).toBe(false)
+  expect(isPrimitiveObject('1')).toBe(false)
+  expect(isPrimitiveObject(true)).toBe(false)
+  expect(isPrimitiveObject(Symbol())).toBe(false)
+  // expect(isPrimitiveObject(1n)).toBe(true)
+
   // null
   expect(isNull(null)).toBe(true)
   expect(isNull(undefined)).toBe(false)
