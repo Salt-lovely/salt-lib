@@ -6,6 +6,7 @@ import {
   isNumberObject,
   isObject,
   isPrimitiveObject,
+  isRegExp,
   isSet,
   isStringObject,
 } from './type'
@@ -164,6 +165,7 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
     if (map.has(obj)) return map.get(obj)
     if (isPrimitiveObject(obj)) return Object(obj.valueOf()) as unknown as T
     if (isDate(obj)) return new Date(obj.valueOf()) as unknown as T
+    if (isRegExp(obj)) return new RegExp(obj) as unknown as T
     if (isMap(obj)) {
       const _map = new Map()
       map.set(obj, _map)

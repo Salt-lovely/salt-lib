@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-13 23:12:50
+ * @LastEditTime: 2022-09-14 21:06:51
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -88,6 +88,9 @@ export function isPrimitiveObject(
 // 断言原生对象
 export function isDate(u: unknown): u is Date {
   return u instanceof Date
+}
+export function isRegExp(u: unknown): u is RegExp {
+  return u instanceof RegExp
 }
 /** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export function isSet(u: unknown): u is Set<any> {

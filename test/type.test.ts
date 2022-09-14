@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-13 23:15:32
+ * @LastEditTime: 2022-09-14 21:09:14
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -24,6 +24,7 @@ import {
   isFunction,
   isObject,
   isDate,
+  isRegExp,
   isMap,
   isSet,
   isWeakMap,
@@ -156,7 +157,7 @@ it('类型测试 Type utils test - object Array ArrayLike', () => {
   expect(isArrayLikeObject([])).toBe(true)
   expect(isArrayLikeObject(arrLike)).toBe(true)
 })
-it('类型测试 Type utils test - function Date Map Set', () => {
+it('类型测试 Type utils test - function Date RegExp Map Set', () => {
   // function
   expect(isFunction(isFunction)).toBe(true)
   expect(isFunction(() => {})).toBe(true)
@@ -167,6 +168,11 @@ it('类型测试 Type utils test - function Date Map Set', () => {
   expect(isDate(Date)).toBe(false)
   expect(isDate(Date())).toBe(false)
   expect(isDate(1234)).toBe(false)
+  // RegExp
+  expect(isRegExp(/456/)).toBe(true)
+  expect(isRegExp(RegExp)).toBe(false)
+  expect(isRegExp(new RegExp('123'))).toBe(true)
+  expect(isRegExp('123')).toBe(false)
   // Map
   expect(isMap(new Map())).toBe(true)
   expect(isMap(Map)).toBe(false)

@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-12 14:01:00
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-12 14:53:20
+ * @LastEditTime: 2022-09-14 21:11:44
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\test\object.test.ts
  */
@@ -19,6 +19,7 @@ import {
   isNumberObject,
   isBooleanObject,
   isDate,
+  isRegExp,
 } from '../src/index'
 
 it('对象操作测试 Object utils test - SafePropName', () => {
@@ -145,6 +146,7 @@ it('对象操作测试 Object utils test - 循环引用 Set Map  Loop Ref of Set
     set: new Set(),
     map: new Map(),
     date: new Date(),
+    reg: /123/i,
     str: Object('awa'),
     num: Object(12345),
     boo: Object(false),
@@ -167,6 +169,7 @@ it('对象操作测试 Object utils test - 循环引用 Set Map  Loop Ref of Set
   expect(loopSet_qwq.map.has(loopSet.map)).toBe(false)
   // 其他内容
   expect(isDate(loopSet_qwq.loopSet.date)).toBe(true)
+  expect(isRegExp(loopSet_qwq.loopSet.reg)).toBe(true)
   expect(isStringObject(loopSet_qwq.loopSet.str)).toBe(true)
   expect(isNumberObject(loopSet_qwq.loopSet.num)).toBe(true)
   expect(isBooleanObject(loopSet_qwq.loopSet.boo)).toBe(true)
