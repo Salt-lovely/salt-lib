@@ -26,6 +26,7 @@ export declare function isBigIntObject(u: unknown): u is BigInt;
 export declare function isSymbolObject(u: unknown): u is Symbol;
 export declare function isPrimitiveObject(u: unknown): u is String | Number | BigInt | Symbol | Boolean;
 export declare function isDate(u: unknown): u is Date;
+export declare function isRegExp(u: unknown): u is RegExp;
 /** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export declare function isSet(u: unknown): u is Set<any>;
 /** 断言参数是一个`Map`，使用之前建议`polyfillES6` */

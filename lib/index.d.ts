@@ -5,6 +5,6 @@ export { assert } from './utils/misc';
 export { isSafePropName, isUnsafePropName, filterUnsafeProp, forSafePropsInObject, extend, deepClone, deepClonePlus, } from './utils/object';
 export { randomChoice, randomHex, randomInt, randomIntBoth, randomIntCeil, uuidNil, uuidRandom, uuidV4, } from './utils/random';
 export { addScript, addStyle, addStyleUrl, addTempScript, setStyle, setStyleUrl, } from './utils/resource';
-export { isString, isStringObject, isNumber, isNumberObject, isBigInt, isBigIntObject, isBoolean, isBooleanObject, isSymbol, isSymbolObject, isPrimitiveObject, isNil, isNull, isUndefined, isFunction, isObject, isDate, isMap, isSet, isWeakMap, isWeakSet, isArray, isArrayLike, isArrayLikeObject, isInteger, isValidLength, } from './utils/type';
+export { isString, isStringObject, isNumber, isNumberObject, isBigInt, isBigIntObject, isBoolean, isBooleanObject, isSymbol, isSymbolObject, isPrimitiveObject, isNil, isNull, isUndefined, isFunction, isObject, isDate, isRegExp, isMap, isSet, isWeakMap, isWeakSet, isArray, isArrayLike, isArrayLikeObject, isInteger, isValidLength, } from './utils/type';
 export { polyfillIO, polyfillES5, polyfillES6, polyfillES7, polyfillES8, } from './polyfill/index';
 export { read, write, unsafeRead, readAndListen } from './storage/localStorage';
