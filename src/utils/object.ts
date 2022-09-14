@@ -1,24 +1,22 @@
-import {
-  isArray,
-  isBooleanObject,
-  isDate,
-  isMap,
-  isNumberObject,
-  isObject,
-  isPrimitiveObject,
-  isRegExp,
-  isSet,
-  isStringObject,
-} from './type'
-
 /*
  * @Author: Salt
  * @Date: 2022-08-30 12:55:25
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-04 20:52:13
+ * @LastEditTime: 2022-09-14 22:05:25
  * @Description: 对象操作相关
  * @FilePath: \salt-lib\src\utils\object.ts
  */
+import {
+  isArray,
+  isDate,
+  isFunction,
+  isMap,
+  isObject,
+  isPrimitiveObject,
+  isRegExp,
+  isSet,
+} from './type'
+
 const unsafePropNames: Set<string | number> = new Set([
   '__proto__',
   'constructor',
@@ -60,7 +58,7 @@ export function forSafePropsInObject<
   deleteUnsafeProp = false
 ): T {
   // 没有回调
-  if (!fn) {
+  if (!isFunction(fn)) {
     if (deleteUnsafeProp) return filterUnsafeProp(obj)
     else return obj
   }
@@ -97,7 +95,7 @@ export function extend<O extends object, N extends object>(
   }
 ): O & N {
   const enumerable = options?.enumerable ?? false
-  const configurable = options?.enumerable ?? true
+  const configurable = options?.configurable ?? true
   const writable = options?.writable ?? true
   forSafePropsInObject(prop, (key, value) => {
     Object.defineProperty(obj, key, {
@@ -127,22 +125,20 @@ function _deepClone<T>(obj: T, map: Map<any, any>): T {
     // 循环调用
     if (map.has(obj)) return map.get(obj)
     // 新的对象
-    let res: T
     if (isArray(obj)) {
-      res = [] as unknown as T
-      map.set(obj, res)
-      // @ts-ignore
-      obj.forEach((el) => res.push(_deepClone(el, map)))
-    } else {
-      res = {} as T
-      map.set(obj, res)
-      for (const key in obj) {
-        res[key] = _deepClone(obj[key], map)
-      }
-      const symbols = Object.getOwnPropertySymbols(obj)
-      // @ts-ignore
-      symbols.forEach((symbol) => (res[symbol] = _deepClone(obj[symbol], map)))
+      const arr = [] as T & object & any[]
+      map.set(obj, arr)
+      obj.forEach((el) => arr.push(_deepClone(el, map)))
+      return arr
     }
+    const res = {} as T
+    map.set(obj, res)
+    for (const key in obj) {
+      res[key] = _deepClone(obj[key], map)
+    }
+    const symbols = Object.getOwnPropertySymbols(obj)
+    // @ts-ignore
+    symbols.forEach((symbol) => (res[symbol] = _deepClone(obj[symbol], map)))
     return res
   } else return obj
 }
@@ -179,25 +175,21 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
       obj.forEach((item) => _set.add(_deepClonePlus(item, map)))
       return _set as unknown as T
     }
-    // 新的对象
-    let res: T
     if (isArray(obj)) {
-      res = [] as unknown as T
-      map.set(obj, res)
-      // @ts-ignore
-      obj.forEach((el) => res.push(_deepClone(el, map)))
-    } else {
-      res = {} as T
-      map.set(obj, res)
-      for (const key in obj) {
-        res[key] = _deepClonePlus(obj[key], map)
-      }
-      const symbols = Object.getOwnPropertySymbols(obj)
-      symbols.forEach(
-        // @ts-ignore
-        (symbol) => (res[symbol] = _deepClonePlus(obj[symbol], map))
-      )
+      const arr = [] as T & object & any[]
+      map.set(obj, arr)
+      obj.forEach((el) => arr.push(_deepClonePlus(el, map)))
+      return arr
     }
+    // 新的对象
+    const res = Object.create(obj.constructor?.prototype || null)
+    map.set(obj, res)
+    for (const key in obj) {
+      res[key] = _deepClonePlus(obj[key], map)
+    }
+    const symbols = Object.getOwnPropertySymbols(obj)
+    // @ts-ignore
+    symbols.forEach((sym) => (res[sym] = _deepClonePlus(obj[sym], map)))
     return res
   } else return obj
 }

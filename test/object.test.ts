@@ -2,11 +2,10 @@
  * @Author: Salt
  * @Date: 2022-09-12 14:01:00
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-14 21:11:44
+ * @LastEditTime: 2022-09-14 22:11:19
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\test\object.test.ts
  */
-
 import {
   isSafePropName,
   isUnsafePropName,
@@ -20,6 +19,7 @@ import {
   isBooleanObject,
   isDate,
   isRegExp,
+  isString,
 } from '../src/index'
 
 it('对象操作测试 Object utils test - SafePropName', () => {
@@ -55,6 +55,8 @@ it('对象操作测试 Object utils test - SafePropName', () => {
   expect(obj.cwc).toBe('b')
   expect(obj['1']).toBe('b')
 
+  // forSafePropsInObject
+  // 有回调
   let s = ''
   obj.toString = 'a'
   obj.__proto__ = 'a'
@@ -70,13 +72,67 @@ it('对象操作测试 Object utils test - SafePropName', () => {
     s += v
   })
   expect(s).toBe('bbb')
+  expect(obj.toString).toBe('a')
+  expect(obj.__proto__).toBe('a')
+  expect(obj.valueOf).toBe('a')
+  expect(obj.propertyIsEnumerable).toBe('a')
+  expect(obj.awa).toBe('b')
+  expect(obj.cwc).toBe('b')
+  expect(obj['1']).toBe('b')
+  forSafePropsInObject(
+    obj,
+    (p, v) => {
+      expect(isUnsafePropName(p)).toBe(false)
+      expect(isSafePropName(p)).toBe(true)
+      expect(v).toBe('b')
+      s += v
+    },
+    true
+  )
+  expect(s).toBe('bbbbbb')
+  expect(obj.toString).toBe(undefined)
+  expect(obj.__proto__).toBe(undefined)
+  expect(obj.valueOf).toBe(undefined)
+  expect(obj.propertyIsEnumerable).toBe(undefined)
+  expect(obj.awa).toBe('b')
+  expect(obj.cwc).toBe('b')
+  expect(obj['1']).toBe('b')
+
+  // 没有回调
+  obj.toString = 'a'
+  obj.__proto__ = 'a'
+  obj.valueOf = 'a'
+  obj.propertyIsEnumerable = 'a'
+  obj.awa = 'b'
+  obj.cwc = 'b'
+  obj['1'] = 'b'
+  forSafePropsInObject(obj)
+  expect(obj.toString).toBe('a')
+  expect(obj.__proto__).toBe('a')
+  expect(obj.valueOf).toBe('a')
+  expect(obj.propertyIsEnumerable).toBe('a')
+  expect(obj.awa).toBe('b')
+  expect(obj.cwc).toBe('b')
+  expect(obj['1']).toBe('b')
+  forSafePropsInObject(obj, undefined, true)
+  expect(obj.toString).toBe(undefined)
+  expect(obj.__proto__).toBe(undefined)
+  expect(obj.valueOf).toBe(undefined)
+  expect(obj.propertyIsEnumerable).toBe(undefined)
+  expect(obj.awa).toBe('b')
+  expect(obj.cwc).toBe('b')
+  expect(obj['1']).toBe('b')
 })
 
-it('对象操作测试 Object utils test - extend deepClone', () => {
+it('对象操作测试 Object utils test - 基本测试 extend deepClone', () => {
   // 基础测试
   const _obj = { a: 'a', b: [{ c: 'c' }, { d: ['d'] }, { true: true }] } as any
-  const __obj = extend(_obj, { awa: { qwq: 1 } }, { enumerable: true })
-  const obj = extend(__obj, { o: {} }, { enumerable: false })
+  const __obj = extend(
+    _obj,
+    { awa: { qwq: 1 } },
+    { enumerable: true, configurable: true, writable: true }
+  )
+  const obj = extend(__obj, { o: {} })
   expect(obj.awa.qwq).toBe(1)
   expect(obj.b[1].d![0]).toBe('d')
   expect(obj.b[0].c!).toBe('c')
@@ -141,6 +197,9 @@ it('对象操作测试 Object utils test - 循环引用 Loop Ref', () => {
 })
 
 it('对象操作测试 Object utils test - 循环引用 Set Map  Loop Ref of Set Map', () => {
+  const obj = Object.create(null) as any
+  obj.toString = 'a'
+  obj.__proto__ = 'a'
   // deepClonePlus 循环引用 Set Map 测试
   const loopSet = {
     set: new Set(),
@@ -150,6 +209,7 @@ it('对象操作测试 Object utils test - 循环引用 Set Map  Loop Ref of Set
     str: Object('awa'),
     num: Object(12345),
     boo: Object(false),
+    obj,
   } as any
   loopSet.loopSet = loopSet
   loopSet.set.add(loopSet)
@@ -173,4 +233,7 @@ it('对象操作测试 Object utils test - 循环引用 Set Map  Loop Ref of Set
   expect(isStringObject(loopSet_qwq.loopSet.str)).toBe(true)
   expect(isNumberObject(loopSet_qwq.loopSet.num)).toBe(true)
   expect(isBooleanObject(loopSet_qwq.loopSet.boo)).toBe(true)
+  // 原型正确
+  expect(isString(loopSet_qwq.loopSet.obj.toString)).toBe(true)
+  expect(isString(loopSet_qwq.obj.__proto__)).toBe(true)
 })
