@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:09:53
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 15:03:00
+ * @LastEditTime: 2022-09-18 15:39:31
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\async.ts
  */
@@ -22,7 +22,7 @@ const asyncUtils: DocSection = {
         },
       ],
       return: 'Promise<void>',
-      example: 'await sleep(); // 等待120ms\nawait sleep(200); // 等待200ms',
+      example: 'await sleep() // 等待120ms\nawait sleep(200) // 等待200ms',
     },
     {
       name: 'waitTill',
@@ -48,8 +48,32 @@ const asyncUtils: DocSection = {
       ],
       return: 'Promise<void>',
       example:
-        "await waitTill(() => document.readyState !== 'loading', 200, 60000); // 每200ms检查一次文档是否准备完毕，1分钟后超时报错",
+        "await waitTill(() => document.readyState !== 'loading', 200, 60000) // 每200ms检查一次文档是否准备完毕，1分钟后超时报错",
     },
+    {
+      name: 'defer',
+      desc: '将回调逻辑改写为异步逻辑的方法',
+      return: `{ promise: Promise<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void }`,
+      example: `async function asyncFn(args) {
+  const deferFn = defer()
+  const onSuccess = deferFn.resolve // 成功时调用回调
+  const onError = deferFn.reject // 失败时调用回调
+  callbackFn(args, onSuccess, onError) // 调用回调逻辑的函数
+  return deferFn.promise // 将一个回调函数包装为异步函数
+}`,
+    },
+    {
+      name: 'docReady',
+      desc: '文档准备完毕后执行回调，相当于jQuery的<code>$(function)</code>',
+      args: [
+        {
+          name: 'fn',
+          desc: '回调函数',
+          type: '() => unknown',
+        }
+      ],
+      example: 'docReady(() => console.log("docReady"))'
+    }
   ],
 }
 

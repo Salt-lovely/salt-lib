@@ -1,0 +1,58 @@
+@import './constant.scss';
+
+.model {
+  font-size: 1rem;
+  .model-title {
+    font-family: $codeFont;
+  }
+  .function {
+    overflow: hidden;
+    .function-title {
+      padding: 1rem;
+      margin-top: 0;
+      background-color: #f0f0f0;
+    }
+    .function-args {
+      ul {
+        padding-left: 0;
+        li {
+          list-style: none;
+          + li {
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+    h3,
+    h4 {
+      margin: 1em 0 .75em ;
+      font-family: $codeFont;
+    }
+    p {
+      $paraLeft: 1rem;
+      margin-top: 0;
+      padding-left: $paraLeft;
+      pre {
+        margin-left: -$paraLeft;
+      }
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+    pre {
+      margin: 0;
+      padding: 1rem;
+      color: #f0f0f0;
+      background-color: #29333d;
+    }
+    padding-bottom: 2rem;
+    + .function {
+      padding-top: 2rem;
+      border-top: 1px solid #ccc;
+    }
+  }
+  // margin-bottom: 2rem;
+  // + .model {
+  //   margin-top: 2rem;
+  // }
+}

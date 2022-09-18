@@ -40,53 +40,6 @@
   bottom: 0;
   right: 0;
 }
-.model .model-title {
-  font-family:
-    Consolas,
-    Source Code Pro,
-    Ubuntu Mono,
-    Courier New;
-}
-.model .function {
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-.model .function .function-title {
-  padding: 1rem;
-  margin-top: 0;
-  background-color: #f0f0f0;
-}
-.model .function .function-args ul {
-  padding-left: 0;
-}
-.model .function .function-args ul li {
-  list-style: none;
-}
-.model .function .function-args ul li + li {
-  margin-top: 6px;
-}
-.model .function h3,
-.model .function h4 {
-  font-family:
-    Consolas,
-    Source Code Pro,
-    Ubuntu Mono,
-    Courier New;
-}
-.model .function p {
-  padding-left: 0.5rem;
-}
-.model .function pre {
-  margin: 0;
-  margin-left: -0.5rem;
-  padding: 1rem;
-  color: #f0f0f0;
-  background-color: #29333d;
-}
-.model .function + .function {
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-}
 body,
 body * {
   box-sizing: border-box;
@@ -104,5 +57,64 @@ code {
   margin: 0 2px;
   border: 1px solid #ccc;
   border-radius: 2px;
+}
+
+/* document/model.scss */
+.model {
+  font-size: 1rem;
+}
+.model .model-title {
+  font-family:
+    Consolas,
+    Source Code Pro,
+    Ubuntu Mono,
+    Courier New;
+}
+.model .function {
+  overflow: hidden;
+  padding-bottom: 2rem;
+}
+.model .function .function-title {
+  padding: 1rem;
+  margin-top: 0;
+  background-color: #f0f0f0;
+}
+.model .function .function-args ul {
+  padding-left: 0;
+}
+.model .function .function-args ul li {
+  list-style: none;
+}
+.model .function .function-args ul li + li {
+  margin-top: 6px;
+}
+.model .function h3,
+.model .function h4 {
+  margin: 1em 0 0.75em;
+  font-family:
+    Consolas,
+    Source Code Pro,
+    Ubuntu Mono,
+    Courier New;
+}
+.model .function p {
+  margin-top: 0;
+  padding-left: 1rem;
+}
+.model .function p pre {
+  margin-left: -1rem;
+}
+.model .function p:last-child {
+  margin-bottom: 0;
+}
+.model .function pre {
+  margin: 0;
+  padding: 1rem;
+  color: #f0f0f0;
+  background-color: #29333d;
+}
+.model .function + .function {
+  padding-top: 2rem;
+  border-top: 1px solid #ccc;
 }
 /*# sourceMappingURL=index.css.map */

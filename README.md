@@ -2,13 +2,13 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-03 00:29:00
+ * @LastEditTime: 2022-09-18 16:59:32
  * @Description: 说明文档
  * @FilePath: \salt-lib\README.md
 -->
 # salt-lib
 
-盐的自用库
+盐的自用库，写了一些通用方法，[文档见Github](//salt-lovely.github.io/salt-lib/)。
 
 ## 使用
 
@@ -22,6 +22,10 @@ import { isString } from 'salt-lib'
 console.log(isString('123'))
 console.log(isString(123))
 ```
+
+因为入口文件使用了`export { ... } from '...'`的写法，因此可以放心地导入任意方法而不用担心摇树优化(tree-shake)之类的问题。
+
+[更多方法详见文档](//salt-lovely.github.io/salt-lib/)。
 
 ## 主要功能
 

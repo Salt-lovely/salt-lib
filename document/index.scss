@@ -1,6 +1,4 @@
-$codeFont: Consolas, Source Code Pro, Ubuntu Mono, Courier New;
-$topHeight: 3rem;
-$menuWidth: 20rem;
+@import './constant.scss';
 
 #head {
   position: fixed;
@@ -36,54 +34,6 @@ $menuWidth: 20rem;
   top: $topHeight;
   bottom: 0;
   right: 0;
-}
-
-.model {
-  .model-title {
-    font-family: $codeFont;
-  }
-  .function {
-    overflow: hidden;
-    .function-title {
-      padding: 1rem;
-      margin-top: 0;
-      background-color: #f0f0f0;
-    }
-    .function-args {
-      ul {
-        padding-left: 0;
-        li {
-          list-style: none;
-          +li{
-            margin-top: 6px;
-          }
-        }
-      }
-    }
-    h3,
-    h4 {
-      font-family: $codeFont;
-    }
-    p {
-      padding-left: 0.5rem;
-    }
-    pre {
-      margin: 0;
-      margin-left: -0.5rem;
-      padding: 1rem;
-      color: #f0f0f0;
-      background-color: #29333d;
-    }
-    margin-bottom: 1rem;
-    + .function {
-      padding-top: 1rem;
-      border-top: 1px solid #ccc;
-    }
-  }
-  // margin-bottom: 2rem;
-  // + .model {
-  //   margin-top: 2rem;
-  // }
 }
 
 body {

@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 23:41:47
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 14:45:09
+ * @LastEditTime: 2022-09-18 15:48:25
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSection.ts
  */
@@ -25,6 +25,7 @@ function createFuncDoc(doc: DocFunction, modelTitle: string): HTMLElement {
   const { name, desc, args = [], return: r = 'void', example = '' } = doc
   const div = document.createElement('article')
   div.className = 'article function'
+  div.setAttribute('name', `${modelTitle}-${name}`)
   appendSubSection({
     heading: 'h3',
     id: `${modelTitle}-model-${name}-function`,
@@ -81,7 +82,7 @@ export function createSection(doc: DocSection): HTMLElement {
   $log(title)
   const sec = document.createElement('section')
   sec.className = 'section model'
-  sec.setAttribute('name', title)
+  sec.setAttribute('name', name)
   const secH3 = document.createElement('h2')
   secH3.className = 'model-title'
   secH3.textContent = title

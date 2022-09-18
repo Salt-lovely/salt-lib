@@ -81,6 +81,7 @@
     const { name, desc, args = [], return: r = "void", example = "" } = doc;
     const div = document.createElement("article");
     div.className = "article function";
+    div.setAttribute("name", `${modelTitle}-${name}`);
     appendSubSection({
       heading: "h3",
       id: `${modelTitle}-model-${name}-function`,
@@ -130,7 +131,7 @@ ${html2Escape(example)}
     $log(title);
     const sec = document.createElement("section");
     sec.className = "section model";
-    sec.setAttribute("name", title);
+    sec.setAttribute("name", name);
     const secH3 = document.createElement("h2");
     secH3.className = "model-title";
     secH3.textContent = title;
@@ -159,7 +160,7 @@ ${html2Escape(example)}
           }
         ],
         return: "Promise<void>",
-        example: "await sleep(); // \u7B49\u5F85120ms\nawait sleep(200); // \u7B49\u5F85200ms"
+        example: "await sleep() // \u7B49\u5F85120ms\nawait sleep(200) // \u7B49\u5F85200ms"
       },
       {
         name: "waitTill",
@@ -184,7 +185,31 @@ ${html2Escape(example)}
           }
         ],
         return: "Promise<void>",
-        example: "await waitTill(() => document.readyState !== 'loading', 200, 60000); // \u6BCF200ms\u68C0\u67E5\u4E00\u6B21\u6587\u6863\u662F\u5426\u51C6\u5907\u5B8C\u6BD5\uFF0C1\u5206\u949F\u540E\u8D85\u65F6\u62A5\u9519"
+        example: "await waitTill(() => document.readyState !== 'loading', 200, 60000) // \u6BCF200ms\u68C0\u67E5\u4E00\u6B21\u6587\u6863\u662F\u5426\u51C6\u5907\u5B8C\u6BD5\uFF0C1\u5206\u949F\u540E\u8D85\u65F6\u62A5\u9519"
+      },
+      {
+        name: "defer",
+        desc: "\u5C06\u56DE\u8C03\u903B\u8F91\u6539\u5199\u4E3A\u5F02\u6B65\u903B\u8F91\u7684\u65B9\u6CD5",
+        return: `{ promise: Promise<T>, resolve: (value: T | PromiseLike<T>) => void, reject: (reason?: any) => void }`,
+        example: `async function asyncFn(args) {
+  const deferFn = defer()
+  const onSuccess = deferFn.resolve // \u6210\u529F\u65F6\u8C03\u7528\u56DE\u8C03
+  const onError = deferFn.reject // \u5931\u8D25\u65F6\u8C03\u7528\u56DE\u8C03
+  callbackFn(args, onSuccess, onError) // \u8C03\u7528\u56DE\u8C03\u903B\u8F91\u7684\u51FD\u6570
+  return deferFn.promise // \u5C06\u4E00\u4E2A\u56DE\u8C03\u51FD\u6570\u5305\u88C5\u4E3A\u5F02\u6B65\u51FD\u6570
+}`
+      },
+      {
+        name: "docReady",
+        desc: "\u6587\u6863\u51C6\u5907\u5B8C\u6BD5\u540E\u6267\u884C\u56DE\u8C03\uFF0C\u76F8\u5F53\u4E8EjQuery\u7684<code>$(function)</code>",
+        args: [
+          {
+            name: "fn",
+            desc: "\u56DE\u8C03\u51FD\u6570",
+            type: "() => unknown"
+          }
+        ],
+        example: 'docReady(() => console.log("docReady"))'
       }
     ]
   };
