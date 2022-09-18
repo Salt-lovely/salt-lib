@@ -1,0 +1,35 @@
+@import './constant.scss';
+
+#menu .menu-model {
+  padding: 1rem 0;
+  .menu-model-title {
+    a {
+      padding: 4px 8px;
+    }
+  }
+  .menu-function-list {
+    margin: 0;
+    padding-left: 1rem;
+    li {
+      list-style: none;
+      a {
+        padding: 4px 8px;
+      }
+    }
+  }
+  + .menu-model {
+    border-top: 1px solid $borderColor;
+  }
+  a {
+    display: inline-block;
+    width: 100%;
+    color: $colorDark2;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: $codeFont;
+    &:hover {
+      color: black;
+      background-color: $colorLight;
+    }
+  }
+}

@@ -1,8 +1,10 @@
+import { $, offset } from 'salt-lib'
+
 /*
  * @Author: Salt
  * @Date: 2022-09-18 12:01:23
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 15:09:50
+ * @LastEditTime: 2022-09-19 00:36:53
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSectionUtils.ts
  */
@@ -55,9 +57,18 @@ export function appendSubSection(props: {
 }
 
 export function html2Escape(str: string) {
-  console.log(str)
   return str.replace(/[<>&"]/g, (c: string) => {
-    console.log(c)
+    // console.log(c)
     return { '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c] || ''
   })
+}
+
+export function scrollToElById(id: string) {
+  const target = $(`#${id}`)
+  if (target) {
+    location.hash = id
+    scrollTo({ top: Math.max(0, offset(target).top - 64) })
+    return true
+  }
+  return false
 }

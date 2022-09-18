@@ -7,22 +7,24 @@
   width: 100%;
   height: $topHeight;
   padding: 0.5rem;
+  background-color: rgba(#fff, 0.75);
   box-shadow: 0 0 8px #6669;
   overflow: hidden;
+  z-index: 9999;
 }
 #main,
 #menu {
-  position: fixed;
   overflow-y: auto;
-  padding: 0 1.5rem 1rem;
+  padding: 0 1.5rem;
   @media screen and (max-width: 1440px) {
-    padding: 0 1rem 1rem;
+    padding: 0 1rem;
   }
   @media screen and (max-width: 960px) {
-    padding: 0 0.5rem 0.5rem;
+    padding: 0 0.5rem;
   }
 }
 #menu {
+  position: fixed;
   left: 0;
   top: $topHeight;
   bottom: 0;
@@ -30,10 +32,9 @@
   box-shadow: 0 8px 8px #6669;
 }
 #main {
-  left: $menuWidth;
-  top: $topHeight;
-  bottom: 0;
-  right: 0;
+  position: relative;
+  margin-left: $menuWidth;
+  margin-top: $topHeight;
 }
 
 body {

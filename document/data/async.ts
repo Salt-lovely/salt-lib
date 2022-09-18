@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:09:53
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 15:39:31
+ * @LastEditTime: 2022-09-18 20:31:44
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\async.ts
  */
@@ -35,7 +35,7 @@ const asyncUtils: DocSection = {
         },
         {
           name: 'time',
-          desc: '延迟多少时间，单位毫秒(ms)，默认120毫秒',
+          desc: '轮询时间间隔，单位毫秒(ms)，默认120毫秒',
           type: 'number',
           default: '120',
         },
@@ -73,6 +73,26 @@ const asyncUtils: DocSection = {
         }
       ],
       example: 'docReady(() => console.log("docReady"))'
+    },
+    {
+      name: 'waitDocReady',
+      desc: '等待文档准备完毕',
+      args: [
+        {
+          name: 'time',
+          desc: '轮询时间间隔，单位毫秒(ms)，默认240毫秒',
+          type: 'number',
+          default: '240',
+        },
+        {
+          name: 'timeout',
+          desc: '超时时间，超出这个时间后会抛出错误，单位毫秒(ms)，默认为12,0000毫秒',
+          type: 'number',
+          default: '12e4',
+        },
+      ],
+      return: 'Promise<void>',
+      example: 'await waitDocReady(200, 60000) // 每200ms检查一次文档是否准备完毕，1分钟后超时报错'
     }
   ],
 }

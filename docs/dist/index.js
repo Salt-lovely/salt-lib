@@ -1,5 +1,17 @@
 "use strict";
 (() => {
+  // node_modules/salt-lib/lib/utils/async.js
+  function sleep(time = 120) {
+    return new Promise((res) => setTimeout(res, time));
+  }
+  function docReady(fn) {
+    if (document.readyState === "loading") {
+      window.addEventListener("DOMContentLoaded", fn);
+    } else {
+      fn();
+    }
+  }
+
   // node_modules/salt-lib/lib/utils/console.js
   function $log(...args) {
     if (!args.length)
@@ -12,6 +24,13 @@
     if (parentElement)
       return parentElement.querySelector(selectors);
     return document.querySelector(selectors);
+  }
+  function offset(el) {
+    if (!el || !el.getClientRects().length)
+      return { top: 0, left: 0 };
+    var rect = el.getBoundingClientRect();
+    var win = el.ownerDocument.defaultView;
+    return { top: rect.top + win.pageYOffset, left: rect.left + win.pageXOffset };
   }
 
   // node_modules/salt-lib/lib/utils/type.js
@@ -63,11 +82,59 @@
     }
   }
   function html2Escape(str) {
-    console.log(str);
     return str.replace(/[<>&"]/g, (c) => {
-      console.log(c);
       return { "<": "&lt;", ">": "&gt;", "&": "&amp;", '"': "&quot;" }[c] || "";
     });
+  }
+  function scrollToElById(id) {
+    const target = $(`#${id}`);
+    if (target) {
+      location.hash = id;
+      scrollTo({ top: Math.max(0, offset(target).top - 64) });
+      return true;
+    }
+    return false;
+  }
+
+  // document/createMenu.ts
+  function createLinks(doc, modelTitle) {
+    const { name } = doc;
+    const li = document.createElement("li");
+    li.className = "menu-function";
+    li.setAttribute("name", name);
+    const a = document.createElement("a");
+    const id = `${modelTitle}-model-${name}-function`;
+    a.href = `#${id}`;
+    a.innerHTML = `<div>${name}</div>`;
+    a.onclick = (ev) => {
+      if (scrollToElById(id))
+        ev.preventDefault();
+    };
+    li.appendChild(a);
+    return li;
+  }
+  function createMenu(doc) {
+    const { title, name, main: main2 } = doc;
+    const sec = document.createElement("section");
+    sec.className = "menu-model";
+    sec.setAttribute("name", title);
+    const head = document.createElement("div");
+    head.className = "menu-model-title";
+    const a = document.createElement("a");
+    const id = `${name}-model`;
+    a.href = `#${id}`;
+    a.innerHTML = `<div>${title}</div>`;
+    a.onclick = (ev) => {
+      if (scrollToElById(id))
+        ev.preventDefault();
+    };
+    head.appendChild(a);
+    sec.appendChild(head);
+    const funcList = document.createElement("ul");
+    funcList.className = "menu-function-list";
+    main2.forEach((funcDoc) => funcList.appendChild(createLinks(funcDoc, name)));
+    sec.appendChild(funcList);
+    return sec;
   }
 
   // document/createSection.ts
@@ -173,7 +240,7 @@ ${html2Escape(example)}
           },
           {
             name: "time",
-            desc: "\u5EF6\u8FDF\u591A\u5C11\u65F6\u95F4\uFF0C\u5355\u4F4D\u6BEB\u79D2(ms)\uFF0C\u9ED8\u8BA4120\u6BEB\u79D2",
+            desc: "\u8F6E\u8BE2\u65F6\u95F4\u95F4\u9694\uFF0C\u5355\u4F4D\u6BEB\u79D2(ms)\uFF0C\u9ED8\u8BA4120\u6BEB\u79D2",
             type: "number",
             default: "120"
           },
@@ -210,6 +277,26 @@ ${html2Escape(example)}
           }
         ],
         example: 'docReady(() => console.log("docReady"))'
+      },
+      {
+        name: "waitDocReady",
+        desc: "\u7B49\u5F85\u6587\u6863\u51C6\u5907\u5B8C\u6BD5",
+        args: [
+          {
+            name: "time",
+            desc: "\u8F6E\u8BE2\u65F6\u95F4\u95F4\u9694\uFF0C\u5355\u4F4D\u6BEB\u79D2(ms)\uFF0C\u9ED8\u8BA4240\u6BEB\u79D2",
+            type: "number",
+            default: "240"
+          },
+          {
+            name: "timeout",
+            desc: "\u8D85\u65F6\u65F6\u95F4\uFF0C\u8D85\u51FA\u8FD9\u4E2A\u65F6\u95F4\u540E\u4F1A\u629B\u51FA\u9519\u8BEF\uFF0C\u5355\u4F4D\u6BEB\u79D2(ms)\uFF0C\u9ED8\u8BA4\u4E3A12,0000\u6BEB\u79D2",
+            type: "number",
+            default: "12e4"
+          }
+        ],
+        return: "Promise<void>",
+        example: "await waitDocReady(200, 60000) // \u6BCF200ms\u68C0\u67E5\u4E00\u6B21\u6587\u6863\u662F\u5426\u51C6\u5907\u5B8C\u6BD5\uFF0C1\u5206\u949F\u540E\u8D85\u65F6\u62A5\u9519"
       }
     ]
   };
@@ -220,7 +307,14 @@ ${html2Escape(example)}
   var menu = $("#menu");
   var main = $("#main");
   models.forEach((model) => {
+    menu.appendChild(createMenu(model));
     main.appendChild(createSection(model));
+  });
+  docReady(async () => {
+    await sleep(240);
+    const id = location.hash.replace(/^#/, "");
+    if (id)
+      scrollToElById(id);
   });
 })();
 //# sourceMappingURL=index.js.map
