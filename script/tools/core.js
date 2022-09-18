@@ -1,5 +1,5 @@
 /*
- * @LastEditTime: 2022-07-24 17:32:15
+ * @LastEditTime: 2022-09-17 22:02:21
  * @Description: file content
  */
 const { build } = require('esbuild');
@@ -9,7 +9,7 @@ const isCssModule = /\.mo?d?u?l?e?\.scss$/i;
 const isCssText = /\.te?x?t?\.scss$/i;
 
 const defaultBuildConfig = {
-  entryPoints: ['src/index.tsx'],
+  entryPoints: ['document/index.ts'],
   bundle: true,
   outfile: 'dist/bundle.js',
   target: 'es2017',

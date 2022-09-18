@@ -2472,6 +2472,11 @@
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
 
+"salt-lib@^0.1.1":
+  "integrity" "sha512-cPv1gHewQ+VWHMo2rIYWDr41Rnr5rykuodIgZ2Ryq712OnyHxuvBmGxJka57DW/qjArotanYnyLQZrGUnelYjQ=="
+  "resolved" "https://registry.npmjs.org/salt-lib/-/salt-lib-0.1.1.tgz"
+  "version" "0.1.1"
+
 "sass@^1.49.0":
   "integrity" "sha512-p7DTOzxkUPa/63FU0R3KApkRHwcVZYC0PLnLm5iyZACyp15qSi32x7zVUhRdABAATmkALqgGrjCJAcWvobmhHw=="
   "resolved" "https://registry.npmjs.org/sass/-/sass-1.54.5.tgz"

@@ -1,5 +1,5 @@
 /*
- * @LastEditTime: 2022-07-30 21:14:20
+ * @LastEditTime: 2022-09-17 22:00:20
  * @Description: 本地热更新服务
  */
 const port = 5000
@@ -11,9 +11,9 @@ const $T = require('./tools/format-time')
 const { findPort } = require('./tools/port')
 const openUrl = require('./tools/openUrl')
 
-console.log($P('MCBSSWiki widget - serve ' + $T(), 'grey'))
+console.log($P('serve ' + $T(), 'grey'))
 ;(async () => {
-  const www = path.resolve(__dirname, '../www')
+  const www = path.resolve(__dirname, '../docs')
   const _port = await findPort(port)
   const url = `http://localhost:${_port}/`
   const onRebuild = (error) => {
@@ -33,7 +33,7 @@ console.log($P('MCBSSWiki widget - serve ' + $T(), 'grey'))
   }
   await core({
     props: {
-      outfile: 'www/dist/index.js',
+      outfile: 'docs/dist/index.js',
       sourcemap: true,
       watch: { onRebuild },
     },

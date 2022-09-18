@@ -1,9 +1,8 @@
 /*
- * @LastEditTime: 2022-08-23 21:59:07
+ * @LastEditTime: 2022-09-17 21:59:57
  * @Description: 打包到 dist
  */
 const outFile = 'dist/bundle.js'
-const outMinFile = 'dist/bundle.min.js'
 
 const commonBuild = {
   props: {
