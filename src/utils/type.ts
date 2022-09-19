@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-14 21:06:51
+ * @LastEditTime: 2022-09-19 22:05:30
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
@@ -39,16 +39,16 @@ export function isObject(u: unknown): u is object {
   return !!u && typeof u === 'object'
 }
 /** 断言参数是一个整数 */
-export const isInteger =
+export const isInteger = /* @__PURE__ */ (() =>
   (Number.isInteger as (u: unknown) => u is number) ||
   function isInteger(u: unknown): u is number {
     return isNumber(u) && isFinite(u) && Math.floor(u) === u
-  }
+  })()
 /** 断言参数是一个合规的`obj.length` */
 export function isValidLength(len: unknown): len is number {
   return isInteger(len) && len > -1 && len < Number.MAX_SAFE_INTEGER
 }
-export const isArray = Array.isArray
+export const isArray = /* @__PURE__ */ (() => Array.isArray)()
 /** 断言参数是一个类数组 */
 export function isArrayLike(u: unknown): u is ArrayLike<any> {
   return !isNil(u) && isValidLength((u as any).length)
