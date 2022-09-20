@@ -1,13 +1,14 @@
 /*
- * @LastEditTime: 2022-09-17 21:59:57
+ * @LastEditTime: 2022-09-19 22:29:09
  * @Description: 打包到 dist
  */
 const outFile = 'dist/bundle.js'
 
 const commonBuild = {
   props: {
+    entryPoints: ['src/index.ts'],
     outfile: outFile,
-    minify: false,
+    minify: true,
     charset: 'utf8',
     legalComments: 'inline',
   },

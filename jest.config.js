@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:18:21
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-05 23:05:04
+ * @LastEditTime: 2022-09-19 22:25:15
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\jest.config.js
  */
@@ -10,10 +10,8 @@
 module.exports = {
   preset: 'ts-jest/presets/default-esm', // or other ESM presets
   testEnvironment: 'jsdom',
-  globals: {
-    'ts-jest': {
-      useESM: true,
-    },
+  transform: {
+    '\\.[jt]sx?$': ['ts-jest', { useESM: true }],
   },
   moduleNameMapper: {
     '^(\\.{1,2}/.*)\\.js$': '$1',

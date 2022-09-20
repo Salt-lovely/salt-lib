@@ -33,15 +33,6 @@
     return { top: rect.top + win.pageYOffset, left: rect.left + win.pageXOffset };
   }
 
-  // node_modules/salt-lib/lib/utils/type.js
-  function isNumber(u) {
-    return typeof u === "number";
-  }
-  var isInteger = Number.isInteger || function isInteger2(u) {
-    return isNumber(u) && isFinite(u) && Math.floor(u) === u;
-  };
-  var isArray = Array.isArray;
-
   // document/createSectionUtils.ts
   function createArgsTitle(doc) {
     const { name, default: d, require: require2 } = doc;

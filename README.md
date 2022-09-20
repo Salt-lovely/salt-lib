@@ -2,13 +2,15 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 16:59:32
+ * @LastEditTime: 2022-09-19 22:31:39
  * @Description: 说明文档
  * @FilePath: \salt-lib\README.md
 -->
 # salt-lib
 
 盐的自用库，写了一些通用方法，[文档见Github](//salt-lovely.github.io/salt-lib/)。
+
+没有任何依赖，非常干净.jpg；整个打包后仅有7KiB，Gzip后仅3KiB。
 
 ## 使用
 
@@ -41,11 +43,9 @@ console.log(isString(123))
 - 类型守卫，如`isArrayLikeObject`、`isUndefined`。
 - localStorage封装，如`write`、`readAndListen`。
 
-### polyfill与猴子类型
+### polyfill与特殊方法
 
 - 使用`polyfill.io`的polyfill功能：`polyfillIO`、`polyfillES5`、`polyfillES8`。
-
-### 特殊方法
 
 ## 打包发布
 
