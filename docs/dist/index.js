@@ -293,8 +293,52 @@ ${html2Escape(example)}
   };
   var async_default = asyncUtils;
 
+  // document/data/console.ts
+  var consoleUtils = {
+    title: "\u63A7\u5236\u53F0\u65B9\u6CD5 \u201CConsole\u201D Methods",
+    name: "console",
+    main: [
+      {
+        name: "$log",
+        desc: "\u5728\u63A7\u5236\u53F0\u6253\u5370\u5185\u5BB9\uFF0C\u540C\u65F6<b>\u4E0D\u663E\u793A\u884C\u53F7</b>\uFF08chrome\u3001\u706B\u72D0\u6D4B\u8BD5\u901A\u8FC7\uFF09",
+        args: [{ name: "...args", desc: "\u8981\u5728\u63A7\u5236\u53F0\u8F93\u51FA\u7684\u5185\u5BB9", type: "any[]" }],
+        return: "Promise<void>",
+        example: "$log('[salt-lib]', 123456, true)"
+      },
+      {
+        name: "$warn",
+        desc: "\u5728\u63A7\u5236\u53F0\u6253\u5370<b>\u8B66\u544A</b>\u5185\u5BB9\uFF0C\u540C\u65F6<b>\u4E0D\u663E\u793A\u884C\u53F7</b>\uFF08chrome\u3001\u706B\u72D0\u6D4B\u8BD5\u901A\u8FC7\uFF09",
+        args: [{ name: "...args", desc: "\u8981\u5728\u63A7\u5236\u53F0\u8F93\u51FA\u7684\u5185\u5BB9", type: "any[]" }],
+        return: "Promise<void>",
+        example: "$warn('[salt-lib]', 123456, true)"
+      },
+      {
+        name: "$error",
+        desc: "\u5728\u63A7\u5236\u53F0\u6253\u5370<b>\u62A5\u9519</b>\u5185\u5BB9\uFF0C\u540C\u65F6<b>\u4E0D\u663E\u793A\u884C\u53F7</b>\uFF08chrome\u3001\u706B\u72D0\u6D4B\u8BD5\u901A\u8FC7\uFF09",
+        args: [{ name: "...args", desc: "\u8981\u5728\u63A7\u5236\u53F0\u8F93\u51FA\u7684\u5185\u5BB9", type: "any[]" }],
+        return: "Promise<void>",
+        example: "$error('[salt-lib]', 123456, true)"
+      },
+      {
+        name: "$info",
+        desc: "\u5728\u63A7\u5236\u53F0\u6253\u5370<b>\u6D88\u606F</b>\u5185\u5BB9\uFF0C\u540C\u65F6<b>\u4E0D\u663E\u793A\u884C\u53F7</b>\uFF08chrome\u3001\u706B\u72D0\u6D4B\u8BD5\u901A\u8FC7\uFF09",
+        args: [{ name: "...args", desc: "\u8981\u5728\u63A7\u5236\u53F0\u8F93\u51FA\u7684\u5185\u5BB9", type: "any[]" }],
+        return: "Promise<void>",
+        example: "$info('[salt-lib]', 123456, true)"
+      },
+      {
+        name: "$debug",
+        desc: "\u5728\u63A7\u5236\u53F0\u6253\u5370<b>Debug</b>\u5185\u5BB9\uFF0C\u540C\u65F6<b>\u4E0D\u663E\u793A\u884C\u53F7</b>\uFF08chrome\u3001\u706B\u72D0\u6D4B\u8BD5\u901A\u8FC7\uFF09",
+        args: [{ name: "...args", desc: "\u8981\u5728\u63A7\u5236\u53F0\u8F93\u51FA\u7684\u5185\u5BB9", type: "any[]" }],
+        return: "Promise<void>",
+        example: "$debug('[salt-lib]', 123456, true)"
+      }
+    ]
+  };
+  var console_default = consoleUtils;
+
   // document/index.ts
-  var models = [async_default];
+  var models = [async_default, console_default];
   var menu = $("#menu");
   var main = $("#main");
   models.forEach((model) => {

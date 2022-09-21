@@ -1,8 +1,10 @@
 @import './constant.scss';
 
 #main .model {
+  padding: 1rem 0;
   font-size: 1rem;
   .model-title {
+    margin-top: 0;
     font-family: $codeFont;
   }
   .function {
@@ -48,7 +50,10 @@
     padding-bottom: 2rem;
     + .function {
       padding-top: 2rem;
-      border-top: 1px solid $borderColor;
+      border-top: 2px dashed $borderColor;
     }
+  }
+  + .model{
+    border-top: 4px solid $borderColor;
   }
 }

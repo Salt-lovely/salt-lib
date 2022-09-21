@@ -62,9 +62,11 @@ code {
 
 /* document/model.scss */
 #main .model {
+  padding: 1rem 0;
   font-size: 1rem;
 }
 #main .model .model-title {
+  margin-top: 0;
   font-family:
     Consolas,
     Source Code Pro,
@@ -116,7 +118,10 @@ code {
 }
 #main .model .function + .function {
   padding-top: 2rem;
-  border-top: 1px solid #ccc;
+  border-top: 2px dashed #ccc;
+}
+#main .model + .model {
+  border-top: 4px solid #ccc;
 }
 
 /* document/menu.scss */
