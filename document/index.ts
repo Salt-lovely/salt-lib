@@ -2,11 +2,11 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:03:12
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 16:16:40
+ * @LastEditTime: 2022-09-24 19:03:35
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\index.ts
  */
-import { $, $$, docReady, sleep } from 'salt-lib'
+import * as Salt from 'salt-lib'
 import { createMenu } from './createMenu'
 import { createSection } from './createSection'
 import { scrollToElById } from './createSectionUtils'
@@ -17,6 +17,10 @@ import objectUtils from './data/object'
 import './index.scss'
 import './model.scss'
 import './menu.scss'
+
+const { $, docReady, sleep } = Salt
+
+Object.assign(window, { Salt })
 
 const models = [asyncUtils, consoleUtils, randomUtils, objectUtils]
 

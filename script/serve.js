@@ -1,5 +1,5 @@
 /*
- * @LastEditTime: 2022-09-17 22:00:20
+ * @LastEditTime: 2022-09-24 19:12:57
  * @Description: 本地热更新服务
  */
 const port = 5000
@@ -35,6 +35,7 @@ console.log($P('serve ' + $T(), 'grey'))
     props: {
       outfile: 'docs/dist/index.js',
       sourcemap: true,
+      minify: true,
       watch: { onRebuild },
     },
     define: {
