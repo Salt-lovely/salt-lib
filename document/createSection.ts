@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 23:41:47
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 17:29:48
+ * @LastEditTime: 2022-09-24 23:20:55
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSection.ts
  */
@@ -67,11 +67,12 @@ function createFuncDoc(doc: DocFunction, modelTitle: string): HTMLElement {
     appendSubSection({
       title: '示例',
       titleClassName: 'function-example-title',
-      content: `<pre class="function-example-code function-example-pre">
-import { ${name} } from 'salt-lib'
+      content: `<pre
+  class="function-example-code function-example-pre"
+  title="你可以在浏览器控制台输入 Salt.${name} 尝试一下"
+  ><code class="lang-js">import { ${name} } from 'salt-lib'
 
-${html2Escape(example.trim())}
-</pre>`,
+${html2Escape(example.trim())}</code></pre>`,
       contentClassName: 'function-example',
       container: div,
     })

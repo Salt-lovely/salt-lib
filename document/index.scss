@@ -12,9 +12,23 @@
   overflow: hidden;
   z-index: 9999;
 }
-#main,
 #menu {
+  position: fixed;
+  left: 0;
+  top: $topHeight;
+  bottom: 0;
+  width: $menuWidth;
+  padding: 0 1rem;
+  @media screen and (max-width: 960px) {
+    padding: 0 0.5rem;
+  }
+  box-shadow: 0 8px 8px #6669;
   overflow-y: auto;
+}
+#main {
+  position: relative;
+  margin-left: $menuWidth;
+  margin-top: $topHeight;
   padding: 0 1.5rem;
   @media screen and (max-width: 1440px) {
     padding: 0 1rem;
@@ -22,19 +36,7 @@
   @media screen and (max-width: 960px) {
     padding: 0 0.5rem;
   }
-}
-#menu {
-  position: fixed;
-  left: 0;
-  top: $topHeight;
-  bottom: 0;
-  width: $menuWidth;
-  box-shadow: 0 8px 8px #6669;
-}
-#main {
-  position: relative;
-  margin-left: $menuWidth;
-  margin-top: $topHeight;
+  overflow-y: auto;
 }
 
 body {
@@ -48,7 +50,7 @@ code,
 pre {
   font-family: $codeFont;
 }
-code {
+:not(pre) > code {
   padding: 2px 4px;
   margin: 0 2px;
   border: 1px solid #ccc;
