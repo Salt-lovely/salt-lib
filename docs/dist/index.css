@@ -62,7 +62,7 @@ code {
 
 /* document/model.scss */
 #main .model {
-  padding: 1rem 0;
+  padding: 2rem 0 1rem;
   font-size: 1rem;
 }
 #main .model .model-title {
@@ -88,12 +88,9 @@ code {
 #main .model .function .function-args ul li {
   list-style: none;
 }
-#main .model .function .function-args ul li + li {
-  margin-top: 6px;
-}
 #main .model .function h3,
 #main .model .function h4 {
-  margin: 1em 0 0.75em;
+  margin: 1em 0 0.6em;
   font-family:
     Consolas,
     Source Code Pro,
@@ -103,6 +100,7 @@ code {
 #main .model .function p {
   margin-top: 0;
   padding-left: 1rem;
+  line-height: calc(1rem + 10px);
 }
 #main .model .function p pre {
   margin-left: -1rem;

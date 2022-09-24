@@ -2,10 +2,12 @@
  * @Author: Salt
  * @Date: 2022-09-21 21:00:06
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-21 21:07:46
+ * @LastEditTime: 2022-09-23 22:52:19
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\console.ts
  */
+import { DocSection } from "../document"
+
 const consoleUtils: DocSection = {
   title: '控制台方法 “Console” Methods',
   name: 'console',

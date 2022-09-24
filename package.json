@@ -3,6 +3,7 @@
   "version": "0.1.2",
   "description": "Salt-lovely's lite lib",
   "main": "lib/index.js",
+  "type": "module",
   "files": [
     "lib"
   ],

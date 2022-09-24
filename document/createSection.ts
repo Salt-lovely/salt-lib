@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 23:41:47
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 15:48:25
+ * @LastEditTime: 2022-09-24 17:29:48
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSection.ts
  */
@@ -12,7 +12,9 @@ import {
   createArgsTitle,
   createFuncTitle,
   html2Escape,
+  idFix,
 } from './createSectionUtils'
+import { DocArgs, DocFunction, DocSection } from './document'
 
 function createArgs(doc: DocArgs): string {
   const { desc, type } = doc
@@ -28,7 +30,7 @@ function createFuncDoc(doc: DocFunction, modelTitle: string): HTMLElement {
   div.setAttribute('name', `${modelTitle}-${name}`)
   appendSubSection({
     heading: 'h3',
-    id: `${modelTitle}-model-${name}-function`,
+    id: idFix(`${modelTitle}-model-${name}-function`),
     title: createFuncTitle(doc),
     titleClassName: 'function-title',
     content: desc,
@@ -61,14 +63,14 @@ function createFuncDoc(doc: DocFunction, modelTitle: string): HTMLElement {
     container: div,
   })
   // 示例
-  if (example) {
+  if (example.trim()) {
     appendSubSection({
       title: '示例',
       titleClassName: 'function-example-title',
       content: `<pre class="function-example-code function-example-pre">
 import { ${name} } from 'salt-lib'
 
-${html2Escape(example)}
+${html2Escape(example.trim())}
 </pre>`,
       contentClassName: 'function-example',
       container: div,
@@ -86,7 +88,7 @@ export function createSection(doc: DocSection): HTMLElement {
   const secH3 = document.createElement('h2')
   secH3.className = 'model-title'
   secH3.textContent = title
-  secH3.id = `${name}-model`
+  secH3.id = idFix(`${name}-model`)
   sec.appendChild(secH3)
   main.forEach((funcDoc) => {
     sec.appendChild(createFuncDoc(funcDoc, name))

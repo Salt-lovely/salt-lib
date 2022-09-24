@@ -2,12 +2,13 @@
  * @Author: Salt
  * @Date: 2022-09-18 22:28:35
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-19 00:29:37
+ * @LastEditTime: 2022-09-24 16:25:21
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createMenu.ts
  */
 import { $, offset } from 'salt-lib'
-import { scrollToElById } from './createSectionUtils'
+import { idFix, scrollToElById } from './createSectionUtils'
+import { DocFunction, DocSection } from './document'
 
 function createLinks(doc: DocFunction, modelTitle: string): HTMLElement {
   const { name } = doc
@@ -15,7 +16,7 @@ function createLinks(doc: DocFunction, modelTitle: string): HTMLElement {
   li.className = 'menu-function'
   li.setAttribute('name', name)
   const a = document.createElement('a')
-  const id = `${modelTitle}-model-${name}-function`
+  const id = idFix(`${modelTitle}-model-${name}-function`)
   a.href = `#${id}`
   a.innerHTML = `<div>${name}</div>`
   a.onclick = (ev) => {
@@ -34,7 +35,7 @@ export function createMenu(doc: DocSection): HTMLElement {
   const head = document.createElement('div')
   head.className = 'menu-model-title'
   const a = document.createElement('a')
-  const id = `${name}-model`
+  const id = idFix(`${name}-model`)
   a.href = `#${id}`
   a.innerHTML = `<div>${title}</div>`
   a.onclick = (ev) => {

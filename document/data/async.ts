@@ -2,10 +2,12 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:09:53
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-18 20:31:44
+ * @LastEditTime: 2022-09-23 22:52:23
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\async.ts
  */
+import { DocSection } from "../document"
+
 const asyncUtils: DocSection = {
   title: '异步方法 “Async” Methods',
   name: 'async',
