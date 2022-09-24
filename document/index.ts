@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:03:12
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 19:03:35
+ * @LastEditTime: 2022-09-24 23:32:06
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\index.ts
  */
@@ -14,15 +14,25 @@ import asyncUtils from './data/async'
 import consoleUtils from './data/console'
 import randomUtils from './data/random'
 import objectUtils from './data/object'
+import resourceUtils from './data/resource'
+import typeUtils from './data/type'
 import './index.scss'
 import './model.scss'
 import './menu.scss'
+import './code.scss'
 
 const { $, docReady, sleep } = Salt
 
 Object.assign(window, { Salt })
 
-const models = [asyncUtils, consoleUtils, randomUtils, objectUtils]
+const models = [
+  asyncUtils,
+  consoleUtils,
+  randomUtils,
+  objectUtils,
+  resourceUtils,
+  typeUtils,
+]
 
 const menu = $('#menu')!
 const main = $('#main')!

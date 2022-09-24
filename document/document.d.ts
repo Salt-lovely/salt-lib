@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:12:45
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 11:03:32
+ * @LastEditTime: 2022-09-24 22:44:59
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\document.d.ts
  */
@@ -19,8 +19,10 @@ export interface DocFunction {
   name: string
   /** 描述 */
   desc: string
-  /** 出现或破坏性更新的版本 */
+  /** 出现版本 */
   version?: string
+  /** 破坏性更新版本 */
+  breakVersion?: string
   /** 泛型 */
   gene?: string
   /** 入参 */

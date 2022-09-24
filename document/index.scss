@@ -56,3 +56,30 @@ pre {
   border: 1px solid #ccc;
   border-radius: 2px;
 }
+
+.tooltip[data-tooltip] {
+  position: relative;
+  &::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    display: inline-block;
+    top: 0;
+    right: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 120ms;
+  }
+  &:hover {
+    &::after {
+      top: -1.5rem;
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+  // pre标签的特殊样式
+  &.tooltip-pre::after{
+    background-color: $preBgColor;
+    padding: 2px 4px;
+    border-radius: 4px;
+  }
+}
