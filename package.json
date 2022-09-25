@@ -1,6 +1,6 @@
 {
   "name": "salt-lib",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Salt-lovely's lite lib",
   "main": "lib/index.js",
   "files": [
