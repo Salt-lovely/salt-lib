@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-14 21:07:27
+ * @LastEditTime: 2022-09-25 15:45:13
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
@@ -66,6 +66,7 @@ export {
   isInteger,
   isValidLength,
 } from './utils/type'
+export { fixedEncodeURI, fixedEncodeURIComponent } from './utils/url'
 
 export {
   polyfillIO,
