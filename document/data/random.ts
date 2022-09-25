@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-23 22:53:58
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 15:23:32
+ * @LastEditTime: 2022-09-25 00:16:32
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\random.ts
  */
@@ -59,7 +59,7 @@ const randomUtils: DocSection = {
       args: [{ name: 'arr', type: 'ArrayLike<T>', desc: '数组或类数组' }],
       return: 'T',
       example:
-        'randomChoice([1, 2, 3])\nrandomChoice({ 1: 1, 2: 2, 3: 3, length: 3 })',
+        'randomChoice([1, 2, 3])\nrandomChoice({ 0: 1, 1: 2, 2: 3, length: 3 })',
     },
     {
       name: 'randomHex',
