@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-07-10 00:22:02
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-19 22:31:39
+ * @LastEditTime: 2022-10-03 10:12:10
  * @Description: 说明文档
  * @FilePath: \salt-lib\README.md
 -->
@@ -19,10 +19,13 @@ yarn add salt-lib
 ```
 
 ```typescript
-import { isString } from 'salt-lib'
+import { deepClonePlus } from 'salt-lib'
 
-console.log(isString('123'))
-console.log(isString(123))
+const loopSet = { set: new Set() }
+loopSet.set.add(loopSet) // 使用Set引用自身
+
+const loopSetClone = deepClonePlus(loopSet)
+loopSetClone.set.has(loopSetClone) // true
 ```
 
 因为入口文件使用了`export { ... } from '...'`的写法，因此可以放心地导入任意方法而不用担心摇树优化(tree-shake)之类的问题。
