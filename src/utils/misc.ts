@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-30 22:56:39
  * @LastEditors: Salt
- * @LastEditTime: 2022-08-30 23:04:00
+ * @LastEditTime: 2022-10-05 10:43:29
  * @Description: 杂项
  * @FilePath: \salt-lib\src\utils\misc.ts
  */
@@ -13,4 +13,11 @@
  */
 export function assert(condition: any, message?: string): asserts condition {
   if (!condition) throw new Error(message)
+}
+
+export function getGlobal(): typeof globalThis {
+  if (typeof self === 'object') return self
+  if (typeof window === 'object') return window
+  if (typeof global === 'object') return global
+  return globalThis
 }

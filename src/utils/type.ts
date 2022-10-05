@@ -2,10 +2,14 @@
  * @Author: Salt
  * @Date: 2022-08-26 21:56:07
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-19 22:05:30
+ * @LastEditTime: 2022-10-05 10:47:16
  * @Description: 类型守卫
  * @FilePath: \salt-lib\src\utils\type.ts
  */
+import { getGlobal } from './misc'
+
+const global = /* @__PURE__ */ getGlobal()
+
 export function isString(u: unknown): u is string {
   return typeof u === 'string'
 }
@@ -68,10 +72,10 @@ export function isBooleanObject(u: unknown): u is Boolean {
   return u instanceof Boolean
 }
 export function isBigIntObject(u: unknown): u is BigInt {
-  return !!BigInt && u instanceof BigInt
+  return !!global.BigInt && u instanceof BigInt
 }
 export function isSymbolObject(u: unknown): u is Symbol {
-  return u instanceof Symbol
+  return !!global.Symbol && u instanceof Symbol
 }
 export function isPrimitiveObject(
   u: unknown
@@ -87,24 +91,24 @@ export function isPrimitiveObject(
 }
 // 断言原生对象
 export function isDate(u: unknown): u is Date {
-  return u instanceof Date
+  return !!global.Date && u instanceof Date
 }
 export function isRegExp(u: unknown): u is RegExp {
   return u instanceof RegExp
 }
 /** 断言参数是一个`Set`，使用之前建议`polyfillES6` */
 export function isSet(u: unknown): u is Set<any> {
-  return u instanceof Set
+  return !!global.Set && u instanceof Set
 }
 /** 断言参数是一个`Map`，使用之前建议`polyfillES6` */
 export function isMap(u: unknown): u is Map<any, any> {
-  return u instanceof Map
+  return !!global.Map && u instanceof Map
 }
 /** 断言参数是一个`WeakSet`，使用之前建议`polyfillES6` */
 export function isWeakSet(u: unknown): u is WeakSet<any> {
-  return u instanceof WeakSet
+  return !!global.WeakSet && u instanceof WeakSet
 }
 /** 断言参数是一个`WeakMap`，使用之前建议`polyfillES6` */
 export function isWeakMap(u: unknown): u is WeakMap<any, any> {
-  return u instanceof WeakMap
+  return !!global.WeakMap && u instanceof WeakMap
 }
