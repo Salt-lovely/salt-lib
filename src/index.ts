@@ -2,14 +2,14 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-25 15:45:13
+ * @LastEditTime: 2022-10-05 10:44:54
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\index.ts
  */
 export { sleep, waitTill, defer, docReady, waitDocReady } from './utils/async'
 export { $debug, $error, $info, $log, $warn } from './utils/console'
 export { $, $$, isOutside, clickOutside, offset } from './utils/dom'
-export { assert } from './utils/misc'
+export { assert, getGlobal } from './utils/misc'
 export {
   isSafePropName,
   isUnsafePropName,
@@ -75,5 +75,7 @@ export {
   polyfillES7,
   polyfillES8,
 } from './polyfill/index'
+
+export { h, splitOption } from './hyper/index'
 
 export { read, write, unsafeRead, readAndListen } from './storage/localStorage'
