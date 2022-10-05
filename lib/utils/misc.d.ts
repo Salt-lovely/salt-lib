@@ -4,3 +4,4 @@
  * @param message 内容为假时抛出错误的内容
  */
 export declare function assert(condition: any, message?: string): asserts condition;
+export declare function getGlobal(): typeof globalThis;
