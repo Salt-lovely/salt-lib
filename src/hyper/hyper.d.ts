@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-10-03 10:10:48
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-05 09:56:56
+ * @LastEditTime: 2022-11-02 20:51:43
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\hyper\hyper.d.ts
  */
@@ -46,6 +46,9 @@ export type CEChildren =
   | DocumentFragment
   | string
   | number
+  | null
+  | undefined
+  | boolean
   | ArrayLike<CEChildren>
 
 // ==============================================================================================

@@ -2,10 +2,11 @@
  * @Author: Salt
  * @Date: 2022-10-03 10:10:26
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-05 10:26:54
+ * @LastEditTime: 2022-11-02 20:52:34
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\hyper\index.ts
  */
+import { HChild } from './children'
 import { HEvent } from './event'
 import { HAttrs, HProps } from './prop'
 import {
@@ -53,6 +54,8 @@ export function h<K extends string>(
     HEvent(el, e)
     HAttrs(el, a)
   }
+
+  HChild(el, children)
 
   return el
 }
