@@ -2,10 +2,13 @@
  * @Author: Salt
  * @Date: 2022-08-30 22:35:17
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-03 00:39:25
+ * @LastEditTime: 2022-11-02 20:54:04
  * @Description: DOM操作相关
  * @FilePath: \salt-lib\src\utils\dom.ts
  */
+
+import { isArrayLikeObject } from './type'
+
 /**
  * 封装`querySelector`
  * @param selectors 选择器
@@ -96,4 +99,22 @@ export function offset(el: Element) {
   var rect = el.getBoundingClientRect() // 元素的大小及其相对于视窗的位置
   var win = el.ownerDocument.defaultView! // 文档的默认窗口对象（只读）
   return { top: rect.top + win.pageYOffset, left: rect.left + win.pageXOffset }
+}
+/** 批量挂载节点到元素上，返回传入的元素 */
+export function appendChildren(
+  el: Element,
+  ...children: Array<Node | ArrayLike<Node>>
+) {
+  _appendChildren(el, children)
+  return el
+}
+function _appendChildren(
+  el: Element,
+  children: ArrayLike<Node | ArrayLike<Node>>
+) {
+  for (let i = 0; i < children.length; i++) {
+    const child = children[i]
+    if (isArrayLikeObject(child)) _appendChildren(el, child)
+    else if (child instanceof Node) el.appendChild(child)
+  }
 }
