@@ -33,3 +33,5 @@ export declare function offset(el: Element): {
     top: number;
     left: number;
 };
+/** 批量挂载节点到元素上，返回传入的元素 */
+export declare function appendChildren(el: Element, ...children: Array<Node | ArrayLike<Node>>): Element;
