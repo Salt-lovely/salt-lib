@@ -2,9 +2,13 @@
 export declare function isUnsafePropName(propName: string | number): boolean;
 /** `propName`是否无法用于属性名攻击 */
 export declare function isSafePropName(propName: string | number): boolean;
-/** 将对象中可枚举`enumerable`的不安全属性设为`undefined` */
+/** **这个方法不能正确处理复杂对象**\
+ * 其中不包含`obj`中可枚举`enumerable`的不安全属性\
+ * 返回浅拷贝得到的新对象，类型与`obj`基本一致 */
 export declare function filterUnsafeProp<T extends object>(obj: T): T;
-/** 遍历对象中可枚举`enumerable`的安全属性
+/** 遍历对象中可枚举`enumerable`的安全属性\
+ * 若没有设置`deleteUnsafeProp`，返回输入的`obj`\
+ * 若此参数设为`true`，返回浅拷贝得到的删除了不安全属性的新对象
  * @param obj 要遍历的对象
  * @param fn 回调函数
  * @param deleteUnsafeProp 是否顺道删除不安全属性，默认为否

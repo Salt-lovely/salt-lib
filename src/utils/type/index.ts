@@ -47,3 +47,4 @@ export {
   isUint8Array,
   isUint8ClampedArray,
 } from './typedArray'
+export { getTag } from './utils'

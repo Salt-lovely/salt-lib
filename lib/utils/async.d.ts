@@ -9,7 +9,7 @@ export declare function sleep(time?: number): Promise<void>;
  * @param timeout 超时时间，超出这个时间后会抛出错误，单位毫秒(ms)，默认为6,0000毫秒
  */
 export declare function waitTill(fn: () => unknown, time?: number, timeout?: number): Promise<void>;
-declare type Defer<T> = {
+type Defer<T> = {
     promise: Promise<T>;
     resolve: (value: T | PromiseLike<T>) => void;
     reject: (reason?: any) => void;

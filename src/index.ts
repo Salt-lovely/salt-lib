@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2023-04-16 22:44:11
+ * @LastEditTime: 2023-04-16 22:57:36
  * @Description: 汇总输出
  * @FilePath: \salt-lib\src\index.ts
  */
@@ -38,6 +38,7 @@ export {
   setStyleUrl,
 } from './utils/resource'
 export {
+  getTag,
   isString,
   isStringObject,
   isNumber,

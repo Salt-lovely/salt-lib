@@ -21,3 +21,7 @@ export declare function isWeakMap(u: unknown): u is WeakMap<any, any>;
 export declare function isPromiseLike(u: unknown): u is PromiseLike<any>;
 /** 断言参数是一个`Promise` */
 export declare function isPromise(u: unknown): u is Promise<any>;
+/** 断言参数是一个`ArrayBuffer` */
+export declare function isArrayBuffer(u: unknown): u is ArrayBuffer;
+/** 断言参数是一个`DataView` */
+export declare function isDataView(u: unknown): u is DataView;
