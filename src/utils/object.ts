@@ -15,7 +15,7 @@ import {
   isPrimitiveObject,
   isRegExp,
   isSet,
-} from './type'
+} from './type/index'
 
 const unsafePropNames: Set<string | number> = new Set([
   '__proto__',

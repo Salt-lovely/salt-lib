@@ -2,12 +2,12 @@
  * @Author: Salt
  * @Date: 2022-08-30 22:35:17
  * @LastEditors: Salt
- * @LastEditTime: 2022-11-02 20:54:04
+ * @LastEditTime: 2023-04-16 19:39:17
  * @Description: DOM操作相关
  * @FilePath: \salt-lib\src\utils\dom.ts
  */
 
-import { isArrayLikeObject } from './type'
+import { isArrayLikeObject } from './type/index'
 
 /**
  * 封装`querySelector`

@@ -6,7 +6,7 @@
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\hyper\prop.ts
  */
-import { isNil } from '../utils/type'
+import { isNil } from '../utils/type/index'
 import {
   ElementAttrs,
   ElementDataSet,

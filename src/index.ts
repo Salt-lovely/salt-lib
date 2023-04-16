@@ -2,8 +2,8 @@
  * @Author: Salt
  * @Date: 2022-08-23 21:59:03
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-05 10:44:54
- * @Description: 这个文件的功能
+ * @LastEditTime: 2023-04-16 19:48:04
+ * @Description: 汇总输出
  * @FilePath: \salt-lib\src\index.ts
  */
 export { sleep, waitTill, defer, docReady, waitDocReady } from './utils/async'
@@ -65,7 +65,9 @@ export {
   isArrayLikeObject,
   isInteger,
   isValidLength,
-} from './utils/type'
+  isPromiseLike,
+  isPromise,
+} from './utils/type/index'
 export { fixedEncodeURI, fixedEncodeURIComponent } from './utils/url'
 
 export {

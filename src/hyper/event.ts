@@ -6,7 +6,7 @@
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\hyper\event.ts
  */
-import { isFunction, isObject } from '../utils/type'
+import { isFunction, isObject } from '../utils/type/index'
 import { ElementEvents, GetHTMLElementByTag } from './hyper'
 
 export function HEvent<K extends string>(

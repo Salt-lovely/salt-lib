@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-05 10:46:16
+ * @LastEditTime: 2023-04-16 19:27:28
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -34,6 +34,8 @@ import {
   isArrayLikeObject,
   isInteger,
   isValidLength,
+  isPromiseLike,
+  isPromise,
 } from '../src/index'
 
 it('类型测试 Type utils test - String Number Boolean', () => {
@@ -157,7 +159,7 @@ it('类型测试 Type utils test - object Array ArrayLike', () => {
   expect(isArrayLikeObject([])).toBe(true)
   expect(isArrayLikeObject(arrLike)).toBe(true)
 })
-it('类型测试 Type utils test - function Date RegExp Map Set', () => {
+it('类型测试 Type utils test - function Date RegExp Map Set Promise', () => {
   // function
   expect(isFunction(isFunction)).toBe(true)
   expect(isFunction(() => {})).toBe(true)
@@ -193,4 +195,20 @@ it('类型测试 Type utils test - function Date RegExp Map Set', () => {
   expect(isWeakSet(new Set())).toBe(false)
   expect(isWeakSet(WeakSet)).toBe(false)
   expect(isWeakSet(new Map())).toBe(false)
+  // isPromiseLike
+  expect(isPromiseLike(undefined)).toBe(false)
+  expect(isPromiseLike(new Set())).toBe(false)
+  expect(isPromiseLike(() => {})).toBe(false)
+  expect(isPromiseLike({ then() {} })).toBe(true)
+  expect(isPromiseLike(Promise)).toBe(false)
+  expect(isPromiseLike(new Promise<void>((res) => res()))).toBe(true)
+  expect(isPromiseLike(Promise.resolve())).toBe(true)
+  // isPromise
+  expect(isPromise(undefined)).toBe(false)
+  expect(isPromise(new Set())).toBe(false)
+  expect(isPromise(() => {})).toBe(false)
+  expect(isPromise({ then() {} })).toBe(false)
+  expect(isPromise(Promise)).toBe(false)
+  expect(isPromise(new Promise<void>((res) => res()))).toBe(true)
+  expect(isPromise(Promise.resolve())).toBe(true)
 })

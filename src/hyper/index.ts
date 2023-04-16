@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-10-03 10:10:26
  * @LastEditors: Salt
- * @LastEditTime: 2022-11-02 20:52:34
+ * @LastEditTime: 2023-04-16 19:40:56
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\src\hyper\index.ts
  */
@@ -19,8 +19,9 @@ import {
   GetHTMLElementOptions,
 } from './hyper'
 import { forSafePropsInObject } from '../utils/object'
-import { isUndefined } from '../utils/type'
+import { isUndefined } from '../utils/type/index'
 /**
+ * **需要DOM环境**\
  * 生成一个HTML元素并赋予初始数据
  * @param tagName 元素的标签名，如`div`、`a`或`p`
  * @param option 元素初始化属性，如`className`或者`href`，也可以用`onClick`属性来绑定事件

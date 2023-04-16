@@ -1,4 +1,4 @@
-import { isArrayLikeObject, isNumber, isString } from '../utils/type'
+import { isArrayLikeObject, isNumber, isString } from '../utils/type/index'
 import { CEChildren, GetHTMLElementByTag } from './hyper'
 
 export function HChild<K extends string>(

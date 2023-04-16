@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-10-05 09:52:17
  * @LastEditors: Salt
- * @LastEditTime: 2022-10-05 10:34:35
+ * @LastEditTime: 2023-04-16 19:45:36
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\test\hyper.test.ts
  */
@@ -34,4 +34,7 @@ it('快速生成DOM测试 Hyper utils test - h', () => {
   // 测试过滤`undefined`属性
   const el2 = h('a', { href: undefined })
   expect(el2.href).toBe('')
+  // 测试子元素
+  const el3 = h('a', null, [1, '2', 3], ['4'], h('span', null, '5', [6]))
+  expect(el3.textContent).toBe('123456')
 })
