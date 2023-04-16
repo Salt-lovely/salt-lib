@@ -2628,10 +2628,10 @@ safe-buffer@~5.1.1:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-salt-lib@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/salt-lib/-/salt-lib-0.1.4.tgz#6106dbdc90d607c2ed626846549c2d8cdebdd033"
-  integrity sha512-VanzRhCUfno7SgR2HNTaO6Ahv7H4B70+UlRMaUm3WBQ/P1rcBNaFbB0acEYzPTWFxIQgJH46HDuR8uwQuecOTw==
+salt-lib@latest:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/salt-lib/-/salt-lib-0.2.0.tgz#de77a55f7318adceffbf8ca0af5a2587b679e463"
+  integrity sha512-adxlyK6B+xPFJrSPVX1UiDQJusm1vB5V5fsH9KC14kqcUxCXFpUJUffowkoN+if+Dl9fa8iMCVVnbeaobuO8dQ==
 
 sass@^1.56.1:
   version "1.57.1"

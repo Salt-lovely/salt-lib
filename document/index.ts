@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 22:03:12
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 23:32:06
+ * @LastEditTime: 2023-04-16 21:21:13
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\index.ts
  */
@@ -23,7 +23,7 @@ import './code.scss'
 
 const { $, docReady, sleep } = Salt
 
-Object.assign(window, { Salt })
+Object.assign(window, { ...Salt })
 
 const models = [
   asyncUtils,

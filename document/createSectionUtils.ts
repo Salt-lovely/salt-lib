@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-18 12:01:23
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-24 16:24:56
+ * @LastEditTime: 2023-04-16 21:00:55
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSectionUtils.ts
  */
@@ -19,7 +19,7 @@ export function createArgsTitle(doc: DocArgs) {
 export function createFuncTitle(doc: DocFunction) {
   const { name, args = [], return: r = 'void', gene } = doc
   const argList = args.map(createArgsTitle)
-  return `${name} ${gene ? `<${gene}>` : ''}(${argList.join(', ')}) => ${r}`
+  return `${name} : ${gene ? `<${gene}>` : ''}(${argList.join(', ')}) => ${r}`
 }
 
 export function appendSubSection(props: {

@@ -1,4 +1,7 @@
-/** `propName`是否可用于属性名攻击 */
+/** `propName`是否可用于属性名攻击\
+ * 不安全的属性名如`__proto__`可能污染全局代码\
+ * **NodeJs编写的服务端**尤为需要注意，因为很多操作会隐性调用\
+ * `toString`、`valueOf`等方法，进而执行恶意代码 */
 export declare function isUnsafePropName(propName: string | number): boolean;
 /** `propName`是否无法用于属性名攻击 */
 export declare function isSafePropName(propName: string | number): boolean;

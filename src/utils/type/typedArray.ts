@@ -2,26 +2,25 @@
  * @Author: Salt
  * @Date: 2023-04-16 21:56:38
  * @LastEditors: Salt
- * @LastEditTime: 2023-04-16 22:11:24
+ * @LastEditTime: 2023-04-16 23:13:06
  * @Description: 类型数组
  * @FilePath: \salt-lib\src\utils\type\typedArray.ts
  */
 import { getTag } from './utils'
 
-const allTypedArrayTags = /* @__PURE__ */ (() =>
-  new Set([
-    'Int8Array',
-    'Uint8Array',
-    'Uint8ClampedArray',
-    'Int16Array',
-    'Uint16Array',
-    'Int32Array',
-    'Uint32Array',
-    'Float32Array',
-    'Float64Array',
-    'BigInt64Array',
-    'BigUint64Array',
-  ]))()
+const allTypedArrayTags = new Set([
+  'Int8Array',
+  'Uint8Array',
+  'Uint8ClampedArray',
+  'Int16Array',
+  'Uint16Array',
+  'Int32Array',
+  'Uint32Array',
+  'Float32Array',
+  'Float64Array',
+  'BigInt64Array',
+  'BigUint64Array',
+])
 type TypedArray =
   | Uint8Array
   | Uint8ClampedArray

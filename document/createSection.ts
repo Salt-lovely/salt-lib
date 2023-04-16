@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-17 23:41:47
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-25 00:11:26
+ * @LastEditTime: 2023-04-16 21:22:33
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\createSection.ts
  */
@@ -69,7 +69,7 @@ function createFuncDoc(doc: DocFunction, modelTitle: string): HTMLElement {
       titleClassName: 'function-example-title',
       content: `<pre
   class="function-example-code function-example-pre tooltip tooltip-pre"
-  data-tooltip="你可以在浏览器控制台输入 Salt.${name} 尝试一下"
+  data-tooltip="你可以在浏览器控制台尝试一下 ${name} "
   ><code class="lang-js">import { ${name} } from 'salt-lib'
 
 ${html2Escape(example.trim())}</code></pre>`,

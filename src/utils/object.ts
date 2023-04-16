@@ -2,14 +2,14 @@
  * @Author: Salt
  * @Date: 2022-08-30 12:55:25
  * @LastEditors: Salt
- * @LastEditTime: 2023-04-16 22:43:13
+ * @LastEditTime: 2023-04-16 23:17:23
  * @Description: 对象操作相关
  * @FilePath: \salt-lib\src\utils\object.ts
  */
-import { isTypedArray } from 'util/types'
 import {
   isArray,
   isArrayBuffer,
+  isTypedArray,
   isDataView,
   isDate,
   isFunction,
@@ -31,7 +31,10 @@ const unsafePropNames: Set<string | number> = new Set([
   'isPrototypeOf',
   'propertyIsEnumerable',
 ])
-/** `propName`是否可用于属性名攻击 */
+/** `propName`是否可用于属性名攻击\
+ * 不安全的属性名如`__proto__`可能污染全局代码\
+ * **NodeJs编写的服务端**尤为需要注意，因为很多操作会隐性调用\
+ * `toString`、`valueOf`等方法，进而执行恶意代码 */
 export function isUnsafePropName(propName: string | number) {
   return unsafePropNames.has(propName)
 }

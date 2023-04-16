@@ -6,11 +6,18 @@
   left: 0;
   width: 100%;
   height: $topHeight;
-  padding: 0.5rem;
+  padding: 8px 16px;
   background-color: rgba(#fff, 0.75);
   box-shadow: 0 0 8px #6669;
   overflow: hidden;
   z-index: 9999;
+  backdrop-filter: blur(4px);
+  h1{
+    height: 100%;
+    margin: 0;
+    font-size: 24px;
+    line-height: calc($topHeight - 16px);
+  }
 }
 #menu {
   position: fixed;

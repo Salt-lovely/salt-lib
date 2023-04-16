@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-23 22:54:47
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-25 01:15:56
+ * @LastEditTime: 2023-04-16 20:52:18
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\document\data\type.ts
  */
@@ -18,7 +18,7 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为字符串',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isString(\'123\') // true\nisString(123) // false',
+      example: "isString('123') // true\nisString(123) // false",
     },
 
     {
@@ -26,7 +26,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为字符串对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isStringObject(Object(\'123\')) // true\nisStringObject(\'123\') // false',
+      example:
+        "isStringObject(Object('123')) // true\nisStringObject('123') // false",
     },
 
     {
@@ -34,7 +35,7 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为数字',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isNumber(123) // true\nisNumber(\'123\') // false',
+      example: "isNumber(123) // true\nisNumber('123') // false",
     },
 
     {
@@ -42,7 +43,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为数字对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isNumberObject(Object(123)) // true\nisNumberObject(123) // false',
+      example:
+        'isNumberObject(Object(123)) // true\nisNumberObject(123) // false',
     },
 
     {
@@ -58,7 +60,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为大数对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isBigIntObject(Object(123n)) // true\nisBigIntObject(123n) // false',
+      example:
+        'isBigIntObject(Object(123n)) // true\nisBigIntObject(123n) // false',
     },
 
     {
@@ -74,7 +77,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为布尔型对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isBooleanObject(Object(true)) // true\nisBooleanObject(true) // false',
+      example:
+        'isBooleanObject(Object(true)) // true\nisBooleanObject(true) // false',
     },
 
     {
@@ -90,7 +94,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为Symbol对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isSymbolObject(Object(Symbol())) // true\nisSymbolObject(Symbol()) // false',
+      example:
+        'isSymbolObject(Object(Symbol())) // true\nisSymbolObject(Symbol()) // false',
     },
 
     {
@@ -98,7 +103,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为原生类型对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isPrimitiveObject(Object(1)) // true\nisPrimitiveObject({}) // false',
+      example:
+        'isPrimitiveObject(Object(1)) // true\nisPrimitiveObject({}) // false',
     },
 
     {
@@ -202,7 +208,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为类数组',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isArrayLike("") // true\nisArrayLike({}) // false',
+      example:
+        'isArrayLike("") // true\nisArrayLike({ length: 0 }) // true\nisArrayLike({}) // false',
     },
 
     {
@@ -210,7 +217,8 @@ const typeUtils: DocSection = {
       desc: '断言传入的参数为类数组对象',
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
-      example: 'isArrayLikeObject({ length: 0 }) // true\nisArrayLikeObject({}) // false',
+      example:
+        'isArrayLikeObject("") // false\nisArrayLikeObject({ length: 0 }) // true\nisArrayLikeObject({}) // false',
     },
 
     {
@@ -227,6 +235,23 @@ const typeUtils: DocSection = {
       args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
       return: 'boolean',
       example: 'isValidLength(12) // true\nisValidLength(-1) // false',
+    },
+
+    {
+      name: 'isPromise',
+      desc: '断言传入的参数为一个<code>Promise</code>',
+      args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
+      return: 'boolean',
+      example: 'isPromise(Promise.resolve()) // true\nisPromise({ then() {} }) // false\nisPromise({}) // false',
+    },
+
+    {
+      name: 'isPromiseLike',
+      desc: '断言传入的参数为一个类<code>Promise</code>对象，此类对象的特征是有一个<code>then</code>方法',
+      args: [{ name: 'u', type: 'any', desc: '要断言的参数' }],
+      return: 'boolean',
+      example:
+        'isPromise(Promise.resolve()) // true\nisPromise({ then() {} }) // true\nisPromise({}) // false',
     },
   ],
 }
