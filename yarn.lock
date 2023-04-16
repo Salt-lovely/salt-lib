@@ -2629,9 +2629,9 @@ safe-buffer@~5.1.1:
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
 salt-lib@latest:
-  version "0.2.0"
-  resolved "https://registry.npmjs.org/salt-lib/-/salt-lib-0.2.0.tgz#de77a55f7318adceffbf8ca0af5a2587b679e463"
-  integrity sha512-adxlyK6B+xPFJrSPVX1UiDQJusm1vB5V5fsH9KC14kqcUxCXFpUJUffowkoN+if+Dl9fa8iMCVVnbeaobuO8dQ==
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/salt-lib/-/salt-lib-0.2.1.tgz#9638c2d6bdb6303be42fc6918f4458537f1188bd"
+  integrity sha512-o9Qu+MSKKMZoUblbcp4euUbxsPLcO3+ARYP2MJmre78UdQCwncxHzLW/eBIrxNTzfesKLYU2nGpeJai6lFpMLQ==
 
 sass@^1.56.1:
   version "1.57.1"
