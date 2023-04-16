@@ -2,12 +2,13 @@
  * @Author: Salt
  * @Date: 2023-04-16 19:34:32
  * @LastEditors: Salt
- * @LastEditTime: 2023-04-16 19:49:29
+ * @LastEditTime: 2023-04-16 22:42:00
  * @Description: 比较复杂的类型判断
  * @FilePath: \salt-lib\src\utils\type\object.ts
  */
 import { getGlobal } from '../misc'
-import { isInteger, isNil, isObject } from "./base"
+import { isInteger, isNil, isObject } from './base'
+import { getTag } from './utils'
 
 const global = /* @__PURE__ */ getGlobal()
 
@@ -61,4 +62,12 @@ export function isPromiseLike(u: unknown): u is PromiseLike<any> {
 /** 断言参数是一个`Promise` */
 export function isPromise(u: unknown): u is Promise<any> {
   return !!u && u instanceof Promise
+}
+/** 断言参数是一个`ArrayBuffer` */
+export function isArrayBuffer(u: unknown): u is ArrayBuffer {
+  return getTag(u) === 'ArrayBuffer'
+}
+/** 断言参数是一个`DataView` */
+export function isDataView(u: unknown): u is DataView {
+  return getTag(u) === 'DataView'
 }

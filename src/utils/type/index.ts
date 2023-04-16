@@ -18,6 +18,8 @@ export {
   isInteger,
 } from './base'
 export {
+  isArrayBuffer,
+  isDataView,
   isDate,
   isRegExp,
   isMap,
@@ -31,3 +33,17 @@ export {
   isPromiseLike,
   isPromise,
 } from './object'
+export {
+  isTypedArray,
+  isBigInt64Array,
+  isBigUint64Array,
+  isFloat32Array,
+  isFloat64Array,
+  isInt16Array,
+  isInt32Array,
+  isInt8Array,
+  isUint16Array,
+  isUint32Array,
+  isUint8Array,
+  isUint8ClampedArray,
+} from './typedArray'

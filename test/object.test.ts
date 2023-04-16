@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-12 14:01:00
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-14 22:11:19
+ * @LastEditTime: 2023-04-16 21:48:21
  * @Description: 这个文件的功能
  * @FilePath: \salt-lib\test\object.test.ts
  */
@@ -46,14 +46,14 @@ it('对象操作测试 Object utils test - SafePropName', () => {
   obj.cwc = 'b'
   obj['1'] = 'b'
 
-  filterUnsafeProp(obj)
-  expect(obj.toString).toBe(undefined)
-  expect(obj.__proto__).toBe(undefined)
-  expect(obj.valueOf).toBe(undefined)
-  expect(obj.propertyIsEnumerable).toBe(undefined)
-  expect(obj.awa).toBe('b')
-  expect(obj.cwc).toBe('b')
-  expect(obj['1']).toBe('b')
+  const safeObj = filterUnsafeProp(obj)
+  expect(safeObj.toString).toBe(undefined)
+  expect(safeObj.__proto__).toBe(undefined)
+  expect(safeObj.valueOf).toBe(undefined)
+  expect(safeObj.propertyIsEnumerable).toBe(undefined)
+  expect(safeObj.awa).toBe('b')
+  expect(safeObj.cwc).toBe('b')
+  expect(safeObj['1']).toBe('b')
 
   // forSafePropsInObject
   // 有回调
@@ -65,21 +65,21 @@ it('对象操作测试 Object utils test - SafePropName', () => {
   obj.awa = 'b'
   obj.cwc = 'b'
   obj['1'] = 'b'
-  forSafePropsInObject(obj, (p, v) => {
+  const obj1 = forSafePropsInObject(obj, (p, v) => {
     expect(isUnsafePropName(p)).toBe(false)
     expect(isSafePropName(p)).toBe(true)
     expect(v).toBe('b')
     s += v
   })
   expect(s).toBe('bbb')
-  expect(obj.toString).toBe('a')
-  expect(obj.__proto__).toBe('a')
-  expect(obj.valueOf).toBe('a')
-  expect(obj.propertyIsEnumerable).toBe('a')
-  expect(obj.awa).toBe('b')
-  expect(obj.cwc).toBe('b')
-  expect(obj['1']).toBe('b')
-  forSafePropsInObject(
+  expect(obj1.toString).toBe('a')
+  expect(obj1.__proto__).toBe('a')
+  expect(obj1.valueOf).toBe('a')
+  expect(obj1.propertyIsEnumerable).toBe('a')
+  expect(obj1.awa).toBe('b')
+  expect(obj1.cwc).toBe('b')
+  expect(obj1['1']).toBe('b')
+  const obj2 = forSafePropsInObject(
     obj,
     (p, v) => {
       expect(isUnsafePropName(p)).toBe(false)
@@ -90,13 +90,13 @@ it('对象操作测试 Object utils test - SafePropName', () => {
     true
   )
   expect(s).toBe('bbbbbb')
-  expect(obj.toString).toBe(undefined)
-  expect(obj.__proto__).toBe(undefined)
-  expect(obj.valueOf).toBe(undefined)
-  expect(obj.propertyIsEnumerable).toBe(undefined)
-  expect(obj.awa).toBe('b')
-  expect(obj.cwc).toBe('b')
-  expect(obj['1']).toBe('b')
+  expect(obj2.toString).toBe(undefined)
+  expect(obj2.__proto__).toBe(undefined)
+  expect(obj2.valueOf).toBe(undefined)
+  expect(obj2.propertyIsEnumerable).toBe(undefined)
+  expect(obj2.awa).toBe('b')
+  expect(obj2.cwc).toBe('b')
+  expect(obj2['1']).toBe('b')
 
   // 没有回调
   obj.toString = 'a'
@@ -106,22 +106,22 @@ it('对象操作测试 Object utils test - SafePropName', () => {
   obj.awa = 'b'
   obj.cwc = 'b'
   obj['1'] = 'b'
-  forSafePropsInObject(obj)
-  expect(obj.toString).toBe('a')
-  expect(obj.__proto__).toBe('a')
-  expect(obj.valueOf).toBe('a')
-  expect(obj.propertyIsEnumerable).toBe('a')
-  expect(obj.awa).toBe('b')
-  expect(obj.cwc).toBe('b')
-  expect(obj['1']).toBe('b')
-  forSafePropsInObject(obj, undefined, true)
-  expect(obj.toString).toBe(undefined)
-  expect(obj.__proto__).toBe(undefined)
-  expect(obj.valueOf).toBe(undefined)
-  expect(obj.propertyIsEnumerable).toBe(undefined)
-  expect(obj.awa).toBe('b')
-  expect(obj.cwc).toBe('b')
-  expect(obj['1']).toBe('b')
+  const obj3 = forSafePropsInObject(obj)
+  expect(obj3.toString).toBe('a')
+  expect(obj3.__proto__).toBe('a')
+  expect(obj3.valueOf).toBe('a')
+  expect(obj3.propertyIsEnumerable).toBe('a')
+  expect(obj3.awa).toBe('b')
+  expect(obj3.cwc).toBe('b')
+  expect(obj3['1']).toBe('b')
+  const obj4 = forSafePropsInObject(obj, undefined, true)
+  expect(obj4.toString).toBe(undefined)
+  expect(obj4.__proto__).toBe(undefined)
+  expect(obj4.valueOf).toBe(undefined)
+  expect(obj4.propertyIsEnumerable).toBe(undefined)
+  expect(obj4.awa).toBe('b')
+  expect(obj4.cwc).toBe('b')
+  expect(obj4['1']).toBe('b')
 })
 
 it('对象操作测试 Object utils test - 基本测试 extend deepClone', () => {

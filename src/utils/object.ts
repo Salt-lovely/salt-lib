@@ -2,12 +2,15 @@
  * @Author: Salt
  * @Date: 2022-08-30 12:55:25
  * @LastEditors: Salt
- * @LastEditTime: 2022-09-14 22:05:25
+ * @LastEditTime: 2023-04-16 22:43:13
  * @Description: 对象操作相关
  * @FilePath: \salt-lib\src\utils\object.ts
  */
+import { isTypedArray } from 'util/types'
 import {
   isArray,
+  isArrayBuffer,
+  isDataView,
   isDate,
   isFunction,
   isMap,
@@ -36,15 +39,24 @@ export function isUnsafePropName(propName: string | number) {
 export function isSafePropName(propName: string | number) {
   return !unsafePropNames.has(propName)
 }
-/** 将对象中可枚举`enumerable`的不安全属性设为`undefined` */
+/** **这个方法不能正确处理复杂对象**\
+ * 其中不包含`obj`中可枚举`enumerable`的不安全属性\
+ * 返回浅拷贝得到的新对象，类型与`obj`基本一致 */
 export function filterUnsafeProp<T extends object>(obj: T): T {
-  for (const p in obj) {
-    // @ts-ignore
-    if (isUnsafePropName(p)) obj[p] = undefined
+  const res = isArray(obj)
+    ? (obj.slice() as T)
+    : (Object.create(obj.constructor?.prototype || null) as T)
+  for (const key in obj) {
+    if (isSafePropName(key)) res[key] = obj[key]
   }
-  return obj
+  const symbols = Object.getOwnPropertySymbols(obj)
+  // @ts-ignore
+  symbols.forEach((sym) => (res[sym] = obj[sym]))
+  return res
 }
-/** 遍历对象中可枚举`enumerable`的安全属性
+/** 遍历对象中可枚举`enumerable`的安全属性\
+ * 若没有设置`deleteUnsafeProp`，返回输入的`obj`\
+ * 若此参数设为`true`，返回浅拷贝得到的删除了不安全属性的新对象
  * @param obj 要遍历的对象
  * @param fn 回调函数
  * @param deleteUnsafeProp 是否顺道删除不安全属性，默认为否
@@ -62,23 +74,13 @@ export function forSafePropsInObject<
     if (deleteUnsafeProp) return filterUnsafeProp(obj)
     else return obj
   }
-  if (deleteUnsafeProp) {
-    for (const p in obj)
-      if (typeof obj[p] !== 'undefined') {
-        if (isSafePropName(p)) fn(p as P, obj[p as P])
-        // 删掉不安全属性
-        // @ts-ignore
-        else obj[p] = undefined
-      }
-  } else {
-    // 不删除不安全属性
-    for (const p in obj) {
-      if (typeof obj[p] !== 'undefined' && isSafePropName(p)) {
-        fn(p as P, obj[p as P])
-      }
+  const safeObj = filterUnsafeProp(obj)
+  for (const p in safeObj)
+    if (typeof safeObj[p] !== 'undefined') {
+      fn(p as P, safeObj[p as P])
     }
-  }
-  return obj
+  if (deleteUnsafeProp) return safeObj
+  else return obj
 }
 /** 使用`prop`拓展`obj`，可以指定属性
  * @param obj 被拓展的对象
@@ -181,6 +183,21 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
       obj.forEach((el) => arr.push(_deepClonePlus(el, map)))
       return arr
     }
+    if (isArrayBuffer(obj)) return _deepCloneArrayBuffer(obj) as unknown as T
+    if (isDataView(obj)) {
+      return new (obj.constructor as any)(
+        _deepCloneArrayBuffer(obj.buffer),
+        obj.byteOffset,
+        obj.byteLength
+      ) as unknown as T
+    }
+    if (isTypedArray(obj)) {
+      return new (obj.constructor as any)(
+        _deepCloneArrayBuffer(obj.buffer),
+        obj.byteOffset,
+        obj.length
+      ) as unknown as T
+    }
     // 新的对象
     const res = Object.create(obj.constructor?.prototype || null)
     map.set(obj, res)
@@ -192,4 +209,11 @@ function _deepClonePlus<T>(obj: T, map: Map<any, any>): T {
     symbols.forEach((sym) => (res[sym] = _deepClonePlus(obj[sym], map)))
     return res
   } else return obj
+}
+function _deepCloneArrayBuffer(arrayBuffer: ArrayBuffer) {
+  const result = new (arrayBuffer.constructor as ArrayBufferConstructor)(
+    arrayBuffer.byteLength
+  )
+  new Uint8Array(result).set(new Uint8Array(arrayBuffer))
+  return result
 }

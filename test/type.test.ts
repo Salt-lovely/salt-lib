@@ -2,7 +2,7 @@
  * @Author: Salt
  * @Date: 2022-09-04 23:14:30
  * @LastEditors: Salt
- * @LastEditTime: 2023-04-16 19:27:28
+ * @LastEditTime: 2023-04-16 22:53:13
  * @Description: 类型测试
  * @FilePath: \salt-lib\test\type.test.ts
  */
@@ -36,6 +36,20 @@ import {
   isValidLength,
   isPromiseLike,
   isPromise,
+  isTypedArray,
+  isBigInt64Array,
+  isBigUint64Array,
+  isFloat32Array,
+  isFloat64Array,
+  isInt16Array,
+  isInt32Array,
+  isInt8Array,
+  isUint16Array,
+  isUint32Array,
+  isUint8Array,
+  isUint8ClampedArray,
+  isDataView,
+  isArrayBuffer,
 } from '../src/index'
 
 it('类型测试 Type utils test - String Number Boolean', () => {
@@ -211,4 +225,67 @@ it('类型测试 Type utils test - function Date RegExp Map Set Promise', () => 
   expect(isPromise(Promise)).toBe(false)
   expect(isPromise(new Promise<void>((res) => res()))).toBe(true)
   expect(isPromise(Promise.resolve())).toBe(true)
+})
+it('类型测试 Type utils test - ArrayBuffer DataView TypedArray', () => {
+  // ArrayBuffer
+  expect(isArrayBuffer(1)).toBe(false)
+  expect(isArrayBuffer(new ArrayBuffer(8))).toBe(true)
+
+  // DataView
+  expect(isDataView(1)).toBe(false)
+  expect(isDataView(new ArrayBuffer(8))).toBe(false)
+  expect(isDataView(new DataView(new ArrayBuffer(8)))).toBe(true)
+
+  // TypedArray
+  expect(isTypedArray(1)).toBe(false)
+  expect(isTypedArray([1])).toBe(false)
+  expect(isTypedArray(new Int8Array([1]))).toBe(true)
+  expect(isTypedArray(new Uint8ClampedArray([1]))).toBe(true)
+  expect(isTypedArray(new Int32Array([1]))).toBe(true)
+  expect(isTypedArray(new Float64Array([1]))).toBe(true)
+  // expect(isTypedArray(new BigInt64Array([1n]))).toBe(true)
+
+  expect(isInt8Array(1)).toBe(false)
+  expect(isInt8Array([1])).toBe(false)
+  expect(isInt8Array(new Int8Array([1]))).toBe(true)
+
+  expect(isUint8Array(1)).toBe(false)
+  expect(isUint8Array([1])).toBe(false)
+  expect(isUint8Array(new Uint8Array([1]))).toBe(true)
+
+  expect(isUint8ClampedArray(1)).toBe(false)
+  expect(isUint8ClampedArray([1])).toBe(false)
+  expect(isUint8ClampedArray(new Uint8ClampedArray([1]))).toBe(true)
+
+  expect(isInt16Array(1)).toBe(false)
+  expect(isInt16Array([1])).toBe(false)
+  expect(isInt16Array(new Int16Array([1]))).toBe(true)
+
+  expect(isUint16Array(1)).toBe(false)
+  expect(isUint16Array([1])).toBe(false)
+  expect(isUint16Array(new Uint16Array([1]))).toBe(true)
+
+  expect(isInt32Array(1)).toBe(false)
+  expect(isInt32Array([1])).toBe(false)
+  expect(isInt32Array(new Int32Array([1]))).toBe(true)
+
+  expect(isUint32Array(1)).toBe(false)
+  expect(isUint32Array([1])).toBe(false)
+  expect(isUint32Array(new Uint32Array([1]))).toBe(true)
+
+  expect(isFloat32Array(1)).toBe(false)
+  expect(isFloat32Array([1])).toBe(false)
+  expect(isFloat32Array(new Float32Array([1]))).toBe(true)
+
+  expect(isFloat64Array(1)).toBe(false)
+  expect(isFloat64Array([1])).toBe(false)
+  expect(isFloat64Array(new Float64Array([1]))).toBe(true)
+
+  expect(isBigInt64Array(1)).toBe(false)
+  expect(isBigInt64Array([1])).toBe(false)
+  // expect(isBigInt64Array(new BigInt64Array([1n]))).toBe(true)
+
+  expect(isBigUint64Array(1)).toBe(false)
+  expect(isBigUint64Array([1])).toBe(false)
+  // expect(isBigUint64Array(new BigUint64Array([1n]))).toBe(true)
 })
