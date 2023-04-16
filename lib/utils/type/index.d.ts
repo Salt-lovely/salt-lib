@@ -1,0 +1,2 @@
+export { isString, isStringObject, isNumber, isNumberObject, isBigInt, isBigIntObject, isBoolean, isBooleanObject, isSymbol, isSymbolObject, isPrimitiveObject, isNil, isNull, isUndefined, isFunction, isObject, isInteger, } from './base';
+export { isDate, isRegExp, isMap, isSet, isWeakMap, isWeakSet, isArray, isArrayLike, isArrayLikeObject, isValidLength, isPromiseLike, isPromise, } from './object';

@@ -1,5 +1,6 @@
 import { CEChildren, ElementAttrs, ElementDataSet, ElementEvents, ElementStyle, GetHTMLElementOptions } from './hyper';
 /**
+ * **需要DOM环境**\
  * 生成一个HTML元素并赋予初始数据
  * @param tagName 元素的标签名，如`div`、`a`或`p`
  * @param option 元素初始化属性，如`className`或者`href`，也可以用`onClick`属性来绑定事件
